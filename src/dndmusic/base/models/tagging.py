@@ -1,4 +1,4 @@
-from base.exceptions import TaggingException
+from dndmusic.base.exceptions import TaggingException
 from django.db import models
 from typing import List
 

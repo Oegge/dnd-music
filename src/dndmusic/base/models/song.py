@@ -1,7 +1,7 @@
 from django.db import models
-from tagging import Description
+from dndmusic.base.models.tagging import Description
 
-class Song:
+class Song(models.Model):
     def __init__(self) -> None:
         self.descriptions = []
 
