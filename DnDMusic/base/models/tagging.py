@@ -27,9 +27,6 @@ class Description(models.Model):
         if tag.is_valid_value(value):
             self.value = value
         else: raise TaggingException("Incorrect value for this type of tag")
-
-    def is_valid_value(self, value):
-        return value in self.values
     
     def get_tag(self) -> Tag:
         return self.tag
