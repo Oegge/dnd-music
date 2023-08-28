@@ -1,6 +1,6 @@
 from base.exceptions import TaggingException
-
-class Description:
+from django.db import models
+class Description(models.Model):
     def __init__(self, tag, value) -> None:
         self.tag = tag
         if tag.is_valid_value(value):
@@ -8,7 +8,7 @@ class Description:
         else: raise TaggingException("Incorrect value for this type of tag")
 
 
-class Tag:
+class Tag(models.Model):
     def __init__(self, name, scale) -> None:
         self.name = name
         self.scale = scale
@@ -19,7 +19,7 @@ class Tag:
         return self.scale.is_valid_value(value)
 
 
-class Scale:
+class Scale(models.Model):
     def __init__(self, name, values) -> None:
         self.name = name
         self.values = values
