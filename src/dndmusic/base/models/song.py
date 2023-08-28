@@ -6,14 +6,14 @@ class Song(models.Model):
         self.descriptions = []
 
     def give_tag(self, description:Description):
-        if self.__is_duplicate_tag__(description):
-            self.__remove_same_tags__(description)
+        if self._is_duplicate_tag_(description):
+            self._remove_same_tags_(description)
         self.descriptions.append(description)
 
-    def __is_duplicate_tag__(self, description:Description) -> bool:
+    def _is_duplicate_tag_(self, description:Description) -> bool:
         tags = {description.get_tag() for description in self.descriptions}
         tag = description.get_tag()
         return tag in tags
     
-    def __remove_same_tags__(self, description:Description):
+    def _remove_same_tags_(self, description:Description):
         self.descriptions = [item for item in self.descriptions if item.get_tag() != description.get_tag()]
