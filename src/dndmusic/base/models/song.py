@@ -2,7 +2,11 @@ from django.db import models
 from dndmusic.base.models.tagging import Description
 
 class Song(models.Model):
+    name = models.CharField(max_length=50)
+    descriptions = models.ManyToManyField(Description, related_name=str)
+
     def __init__(self) -> None:
+        
         self.descriptions = []
 
     def give_tag(self, description:Description):
