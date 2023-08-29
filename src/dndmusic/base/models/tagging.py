@@ -23,9 +23,8 @@ class Tag(models.Model):
 
 
 class Description(models.Model):
-    def __init__(self, tag, value) -> None:
+    def __init__(self, tag:Tag, value:str) -> None:
         self.tag = tag
-        value = str(value)
         if tag.is_valid_value(value):
             self.value = value
         else: raise TaggingException("Incorrect value for this type of tag")
