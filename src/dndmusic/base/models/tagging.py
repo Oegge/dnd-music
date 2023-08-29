@@ -16,7 +16,7 @@ class Scale(models.Model):
 
 class Tag(models.Model):
     name=models.CharField(max_length=20)
-    scale=models.ForeignKey(Scale, null=True)
+    scale=models.ForeignKey(Scale, null=True, on_delete=models.CASCADE)
     def __init__(self, name:str, scale:Scale) -> None:
         self.name = name
         self.scale = scale
@@ -28,7 +28,7 @@ class Tag(models.Model):
 
 
 class Description(models.Model):
-    tag = models.ForeignKey(Tag, related_name="descriptions")
+    tag = models.ForeignKey(Tag, related_name="descriptions", on_delete=models.CASCADE)
     value = models.CharField(max_length=20, null=True)
     def __init__(self, tag:Tag, value:str) -> None:
         self.tag = tag

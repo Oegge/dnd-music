@@ -3,7 +3,7 @@ from dndmusic.base.models.tagging import Description
 
 class Song(models.Model):
     name = models.CharField(max_length=50)
-    audio = models.FileField(upload_to='audio/')
+    audio = models.FileField(upload_to='audios/')
     descriptions = models.ManyToManyField(Description, related_name="songs")
 
     def __init__(self) -> None:
