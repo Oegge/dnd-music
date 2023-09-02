@@ -6,11 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock css_files %}
 {% block content %}
-    <div class="login">      
-        <div class="card card-body"> 
-
-            <h2>Login</h2>
-            <br>
+    <div class="login center ">      
+        <div class="card card-body basic"> 
+            <h2>DnD Session Helper</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form|crispy }}

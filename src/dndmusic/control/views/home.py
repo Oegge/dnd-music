@@ -40,4 +40,5 @@ class MainPage(View, LoginRequiredMixin):
     template_name = "control/home.html"
 
     def get(self, request):
-        return render(request, self.template_name, context={})
+        print(request.user)
+        return render(request, self.template_name, context={'user':request.user})
