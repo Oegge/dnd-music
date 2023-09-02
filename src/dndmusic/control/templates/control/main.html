@@ -3,9 +3,9 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% load static %}
 <html>
     <head>
-        {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{% block tab_title %}DnD Music Manager {% endblock %}</title>
@@ -14,10 +14,80 @@
         <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
 
         <link rel="stylesheet" href="">
-    </head>
+
+        <style>
+            body {
+                background-image: url({% static 'images/background.png' %}); /* Replace with the actual path */
+                background-size: cover; /* Adjust how the image is scaled */
+            }
+            .background {
+                background-image: url({% static 'images/b2.png' %}); /* Replace with the actual path */
+                background-size: cover; /* Adjust how the image is scaled */
+                background-repeat: no-repeat; /* Prevent image from repeating */
+                /* Add more background styles as needed */
+                
+            }
+        </style>
+    </head> 
     <body>
-        {% block body %}
-        {% endblock body %}
+        <div>head
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            {% block headline %}{% endblock headline %}
+        </div>
+        <div>
+            {% block sideline_left %}{% endblock sideline_left %}
+        </div>
+        {% include 'control/navigation.html' %}
+        <div class='background'>
+            {% block body %}
+            {% endblock body %}
+        </div>
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
