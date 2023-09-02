@@ -1,61 +1,69 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-{% load static %}
-<html>
+<html lang="en">
     <head>
+        {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block tab_title %}DnD Music Manager {% endblock %}</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <meta name="description" content="">
+        
+        <title>{% block tab_title %}DnD Music Manager{% endblock %}</title>
 
-        <link rel="stylesheet" href="">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+        <!-- Tempus Dominus Bootstrap 4 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        
+        {% block css_files %}{% endblock css_files %}
+
         <style>
             body {
-                background-image: url({% static 'images/background.png' %}); /* Replace with the actual path */
-                background-size: cover; /* Adjust how the image is scaled */
+                background-image: url({% static 'images/background.png' %});
+                background-size: cover;
             }
-            .background {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url({% static 'images/b2.png' %}); /* Replace with the actual path */
-                background-size: cover; /* Adjust as needed */
-                background-attachment: fixed; /* Keeps the image fixed */
-                z-index: -1; /* Puts the background image behind other content */
-              }
-              
         </style>
 
-        {% block css_files %}{% endblock css_files %}
+        <!-- jQuery & jQuery UI -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+        <!-- Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- Moment.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+        <!-- Tempus Dominus Bootstrap 4 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
     </head> 
     <body>
-        <div>head
+        <div>
             {% block headline %}{% endblock headline %}
         </div>
         <div>
             {% block sideline_left %}{% endblock sideline_left %}
         </div>
+        
         {% include 'control/navigation.html' %}
-        {% block body %}
-        
-        <div class='background'>
-            {% block content %}
-            {% endblock content %}
-        </div>
-        {% endblock body %}
 
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <script src="" async defer></script>
+        <div class="background">
+            {% block body %}
+                {% block content %}
+                {% endblock content %}
+            {% endblock body %}
+        </div>
     </body>
 </html>

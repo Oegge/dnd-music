@@ -1,30 +1,10 @@
-.form-group {
-    margin-bottom: 20px;
-}
-.form-control {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    font-size: 16px;
-}
 
-/* Style form buttons */
-.btn {
-    background-color: #007BFF;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: #FFF;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
 .login {
     display: flex;
+    width: 30vh;          /* assuming you want to center it in the viewport */
     justify-content: center; /* horizontally center */
-    align-items: center;     /* vertically center */
-    height: 100vh;           /* assuming you want to center it in the viewport */
+    align-items: center;    
+    /* vertically center */
+    height: 100vh; 
 }
 
