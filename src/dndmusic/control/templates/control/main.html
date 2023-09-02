@@ -12,82 +12,43 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
         <link rel="stylesheet" href="">
-
         <style>
             body {
                 background-image: url({% static 'images/background.png' %}); /* Replace with the actual path */
                 background-size: cover; /* Adjust how the image is scaled */
             }
             .background {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
                 background-image: url({% static 'images/b2.png' %}); /* Replace with the actual path */
-                background-size: cover; /* Adjust how the image is scaled */
-                background-repeat: no-repeat; /* Prevent image from repeating */
-                /* Add more background styles as needed */
-                
-            }
+                background-size: cover; /* Adjust as needed */
+                background-attachment: fixed; /* Keeps the image fixed */
+                z-index: -1; /* Puts the background image behind other content */
+              }
+              
         </style>
     </head> 
     <body>
         <div>head
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             {% block headline %}{% endblock headline %}
         </div>
         <div>
             {% block sideline_left %}{% endblock sideline_left %}
         </div>
         {% include 'control/navigation.html' %}
+        {% block body %}
+        
         <div class='background'>
-            {% block body %}
-            {% endblock body %}
+            {% block content %}
+            {% endblock content %}
         </div>
+        {% endblock body %}
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
