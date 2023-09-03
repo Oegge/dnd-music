@@ -52,7 +52,7 @@ class MainPage(View, LoginRequiredMixin):
 
     def get(self, request):
         print(request.user)
-        return render(request, self.template_name, context={'user':request.user})
+        return render(request, self.template_name, )
 
 
 class Songs(View, LoginRequiredMixin):
@@ -60,7 +60,6 @@ class Songs(View, LoginRequiredMixin):
         user = request.user
         songs=Song.objects.all()
         context={'songs':songs,
-                 'user':user
 
         }
         return render(request,'control/songs/song_overview.html',context=context)
