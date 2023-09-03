@@ -15,8 +15,11 @@ class DnDView(View, LoginRequiredMixin):
 
 class Login(View):
     def get(self, request):
+        # Check if the user is already authenticated
+        if request.user.is_authenticated:
+            return redirect("control:home")
+            
         form = LoginForm()
-
         return render(request, "control/login.html", {"form": form})
 
     def post(self, request):
@@ -29,15 +32,24 @@ class Login(View):
             if user is not None:
                 login(request, user)
                 return redirect("control:home")
+        else:
+            # Return the form with the validation errors
+            return render(request, "control/login.html", {"form": form})
 
 
 class LandingPage(View, LoginRequiredMixin):
     def get(self, request):
-        return redirect(reverse("control:home"))
+        # Check if the user is already authenticated
+        if request.user.is_authenticated:
+            return redirect("control:home")
+            
+        form = LoginForm()
+        return render(request, "control/login.html", {"form": form})
 
 
 class MainPage(View, LoginRequiredMixin):
     template_name = "control/home.html"
 
     def get(self, request):
-        return render(request, self.template_name, context={})
+        print(request.user)
+        return render(request, self.template_name, context={'user':request.user})

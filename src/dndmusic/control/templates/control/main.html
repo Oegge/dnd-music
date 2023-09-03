@@ -1,69 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        
-        <title>{% block tab_title %}DnD Music Manager{% endblock %}</title>
+  <head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <title>{% block tab_title %}DnD Music Manager{% endblock %}</title>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        
-        <!-- FontAwesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'images/favicon.png' %}"
+    />
 
-        <!-- Tempus Dominus Bootstrap 4 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-        
-        {% block css_files %}{% endblock css_files %}
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
 
-        <style>
-            body {
-                background-image: url({% static 'images/background.png' %});
-                background-size: cover;
-            }
-        </style>
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+      integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs="
+      crossorigin="anonymous"
+    />
 
-        <!-- jQuery & jQuery UI -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
 
-        <!-- Popper.js -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        
-        <!-- Bootstrap JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block css_files %}{% endblock css_files %}
 
-        <!-- Moment.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+    <style>
+      body {
+        background-image: url({% static "images/background.png" %});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+      }
+      .dragon {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
 
-        <!-- Tempus Dominus Bootstrap 4 -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
-    </head> 
-    <body>
-        <div>
-            {% block headline %}{% endblock headline %}
+    <!-- jQuery & jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Popper.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Moment.js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+      integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+      integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div style="height: 100vh">
+      <div style="position: fixed; width: 100%">
+        {% block headline %}
+        <div class="headline row">
+          <div class="dragon col-3 row">
+            <div >
+              <img
+                src="{% static 'images/dragon_clef.png' %}"
+                alt="Description"
+              />
+            </div>
+            <div class="DND" style="margin-left: 10px;">DnD</div>
+          </div>
+
+          <div class="dragon" style="right: 0; position: absolute; margin-right: 50px;">
+            <img src="{% static 'images/dragon_clef_mini_norim.png' %}" alt="Description of Image">
+            
+            <a href="{% url 'control:login' %}" style="color: rgb(217, 200, 183);">
+              {% if user.is_authenticated %}{{ user.username }} {% else %} Login{% endif %} 
+            </a></div>
         </div>
-        <div>
-            {% block sideline_left %}{% endblock sideline_left %}
-        </div>
-        
-        {% include 'control/navigation.html' %}
+        {% comment %} the line {% endcomment %}
+        <div style="height: 3px; background-color: rgb(217, 200, 183)"></div>
+        <div class="secondline">sdgdsg</div>
+        {% endblock headline %}
+      </div>
+      <div>{% block sideline_left %}{% endblock sideline_left %}</div>
 
-        <div class="background">
-            {% block body %}
-                {% block content %}
-                {% endblock content %}
-            {% endblock body %}
-        </div>
-    </body>
+      {% include 'control/navigation.html' %}
+
+      <div class="background">
+        {% block body %}
+        
+        {% block content %} {% endblock content %} {% endblock body %}
+      </div>
+    </div>
+  </body>
 </html>

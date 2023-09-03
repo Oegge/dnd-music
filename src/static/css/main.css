@@ -5,3 +5,47 @@
     /* Your content styles */
     margin-top: 100vh; /* Adjust as needed to prevent content overlap */
   }
+
+  .btn{
+    background-color: rgb(38, 38, 38);
+    color: rgb(217, 200, 183);
+  }
+  .headline{
+    background-color: black;
+    height: 6vh;
+
+  }
+  .secondline{
+    background-color: grey;
+    height: 5vh;
+    z-index: 1000; /* To ensure they are above other content */
+  }
+
+* a:hover{
+  color: rgb(255 , 204, 153);
+}
+* {
+  color: rgb(217, 200, 183);
+}
+
+.dragon {
+  height: 6vh;
+  margin-left: 10px;
+  /* overflow: hidden; to ensure no overflow */
+
+}
+
+
+.dragon img {
+  margin-top: 7px;
+  height: 5vh;
+}
+
+.DND{
+justify-content: center;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+   /* * {    outline: 1px solid red;
+}    */
