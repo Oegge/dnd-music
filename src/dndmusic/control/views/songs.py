@@ -17,3 +17,11 @@ class SongOverview(View, LoginRequiredMixin):
                  'user':user
         }
         return render(request,'control/songs/song_overview.html',context=context)
+    
+
+class AddSong(View, LoginRequiredMixin):
+    def get(self, request):
+        user = request.user
+        context={'user':user
+        }
+        return render(request,'control/songs/add_song.html',context=context)    

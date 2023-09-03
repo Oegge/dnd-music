@@ -27,4 +27,12 @@ class EditPlaylist(View, LoginRequiredMixin):
                  'user':user
         }
         return render(request,'control/playlists/edit_playlist.html',context=context)
+    
+
+class NewPlaylist(View, LoginRequiredMixin):
+    def get(self, request):
+        user = request.user
+        context={'user':user
+        }
+        return render(request,'control/playlists/new_playlist.html',context=context)  
 
