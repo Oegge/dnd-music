@@ -16,15 +16,20 @@
 
   }
   .secondline{
-    background-color: grey;
+    background-color: rgb(64, 64, 64);
     height: 5vh;
     z-index: 1000; /* To ensure they are above other content */
   }
 
-* a:hover{
+a:hover{
   color: rgb(255 , 204, 153);
 }
-* {
+
+a {
+  color: rgb(217, 200, 183);
+}
+
+body {
   color: rgb(217, 200, 183);
 }
 
@@ -45,6 +50,10 @@
 justify-content: center;
   font-size: 50px;
   font-weight: 600;
+}
+
+.card {
+  background-color: rgb(86, 86, 86,0.5);
 }
 
    /* * {    outline: 1px solid red;

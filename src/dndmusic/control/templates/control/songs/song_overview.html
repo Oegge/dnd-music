@@ -1,0 +1,26 @@
+{% extends 'control/main.html' %}
+{% load static %}
+{% block title %}
+Songs
+{% endblock title %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+          <th>Title</th>
+          <th>Duration</th>
+          <th>Tags
+            <a href="your-link-here.html">
+                <i class="fas fa-search"></i>
+            </a>
+            
+          </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    {% for song in songs %}
+    {% endfor %}
+</table>
+{% endblock %}

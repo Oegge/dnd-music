@@ -38,7 +38,7 @@ class Login(View):
 
 
 class LandingPage(View, LoginRequiredMixin):
-    def get(self, request):
+    def get(self, request, user_id):
         # Check if the user is already authenticated
         if request.user.is_authenticated:
             return redirect("control:home")
@@ -53,3 +53,14 @@ class MainPage(View, LoginRequiredMixin):
     def get(self, request):
         print(request.user)
         return render(request, self.template_name, context={'user':request.user})
+
+
+class Songs(View, LoginRequiredMixin):
+    def get(self, request):
+        user = request.user
+        songs=Song.objects.all()
+        context={'songs':songs,
+                 'user':user
+
+        }
+        return render(request,'control/songs/song_overview.html',context=context)

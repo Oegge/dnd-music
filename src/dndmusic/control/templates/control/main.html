@@ -84,41 +84,54 @@
     ></script>
   </head>
   <body>
-    <div style="height: 100vh">
+    <div style="height: 11vh">
       <div style="position: fixed; width: 100%">
-        {% block headline %}
         <div class="headline row">
           <div class="dragon col-3 row">
             <div >
               <img
-                src="{% static 'images/dragon_clef.png' %}"
-                alt="Description"
+              src="{% static 'images/dragon_clef.png' %}"
+              alt="Description"
               />
             </div>
             <div class="DND" style="margin-left: 10px;">DnD</div>
           </div>
-
+          
           <div class="dragon" style="right: 0; position: absolute; margin-right: 50px;">
             <img src="{% static 'images/dragon_clef_mini_norim.png' %}" alt="Description of Image">
             
-            <a href="{% url 'control:login' %}" style="color: rgb(217, 200, 183);">
+            <a href="{% url 'control:login' %}" >
               {% if user.is_authenticated %}{{ user.username }} {% else %} Login{% endif %} 
             </a></div>
-        </div>
-        {% comment %} the line {% endcomment %}
+          </div>
+          {% comment %} the line {% endcomment %}
+          {% block headline %}
         <div style="height: 3px; background-color: rgb(217, 200, 183)"></div>
         <div class="secondline">sdgdsg</div>
         {% endblock headline %}
       </div>
       <div>{% block sideline_left %}{% endblock sideline_left %}</div>
-
+      
       {% include 'control/navigation.html' %}
-
-      <div class="background">
-        {% block body %}
-        
-        {% block content %} {% endblock content %} {% endblock body %}
-      </div>
     </div>
+      
+      <div class="background">
+        <h1>
+          {% block title %}
+
+          {% endblock title %}
+        </h1>
+        <br>
+
+
+          {% block body %}
+          <div class="card card-body col-10" style="margin-left: 15px;">
+
+            {% block content %}
+            {% endblock content %} 
+          </div>
+           
+          {% endblock body %}
+        </div>
   </body>
 </html>
