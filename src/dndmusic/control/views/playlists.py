@@ -16,4 +16,15 @@ class PlaylistOverview(View, LoginRequiredMixin):
         context={'playlists':playlists,
                  'user':user
         }
-        return render(request,'control/songs/song_overview.html',context=context)
+        return render(request,'control/playlists/playlist_overview.html',context=context)
+
+
+class EditPlaylist(View, LoginRequiredMixin):
+    def get(self, request, playlist_id):
+        user = request.user
+        playlist=Playlist.objects.filter(id=playlist_id)
+        context={'playlist':playlist,
+                 'user':user
+        }
+        return render(request,'control/playlists/edit_playlist.html',context=context)
+
