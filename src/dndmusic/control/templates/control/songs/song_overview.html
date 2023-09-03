@@ -24,8 +24,22 @@ Songs
     {% for song in songs %}
         <tr>
             <td>
-                song.name
+{{song.name}}            
+</td>
+            <td>
+                {{song.duration}}
             </td>
+            <td>
+                {% for tag in song.tags.all %}
+                {{ tag }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="">                <i class="fas fa-tag"></i>
+                            </a>
+                            <a href="">                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
         </tr>
         {% endfor %}
     </tbody>
