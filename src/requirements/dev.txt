@@ -2,5 +2,5 @@ asgiref==3.7.2
 crispy-bootstrap4==2022.1
 Django==4.2.4
 django-crispy-forms==2.0
-sqlparse==0.4.4
 pydub==0.25.1
+sqlparse==0.4.4

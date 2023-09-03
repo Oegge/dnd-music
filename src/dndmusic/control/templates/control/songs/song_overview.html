@@ -1,47 +1,42 @@
-{% extends 'control/main.html' %}
-{% load static %}
-{% block title %}
-Songs
-{% endblock title %}
+{% extends 'control/main.html' %} 
+{% load static %} 
+{% block title %} Songs {%endblock title %} 
+{% block css_files %} 
+<link rel="stylesheet" type="text/css" href="{% static 'css/songs_overview.css' %}">
+
+{% endblock css_files %}
 
 {% block content %}
 
 <table>
-    <thead>
-        <tr>
-          <th>Title</th>
-          <th>Duration</th>
-          <th>Tags
-            <a href="your-link-here.html">
-                <i class="fas fa-search"></i>
-            </a>
-            
-          </th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Duration</th>
+      <th>
+        Tags
+        <a href="your-link-here.html">
+          <i class="fas fa-search"></i>
+        </a>
+      </th>
+      <th style="text-align: right;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for song in songs %}
-        <tr>
-            <td>
-{{song.name}}            
-</td>
-            <td>
-                {{song.duration}}
-            </td>
-            <td>
-                {% for tag in song.tags.all %}
-                {{ tag }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-                        </td>
-                        <td>
-                            <a href="">                <i class="fas fa-tag"></i>
-                            </a>
-                            <a href="">                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+    <tr>
+      <td>{{song.name}}</td>
+      <td>{{song.duration}}</td>
+      <td>
+        {% for tag in song.tags.all %} {{ tag }}{% if not forloop.last %}, 
+        {%     endif %} {% endfor %}
+      </td>
+      <td class='actions-container'style="text-align: right;">
+        <a href=""> <i class="fas fa-tag"></i> </a>
+        <a href=""> <i class="fas fa-trash"></i> </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

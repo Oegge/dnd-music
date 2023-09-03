@@ -11,7 +11,7 @@ class Song(models.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._calculate_duration_()
+        # self._calculate_duration_()
 
     def give_tag(self, description:Description):
         if self._is_duplicate_tag_(description):
