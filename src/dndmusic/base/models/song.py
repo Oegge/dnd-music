@@ -4,10 +4,8 @@ from dndmusic.base.models.tagging import Description
 class Song(models.Model):
     name = models.CharField(max_length=50)
     audio = models.FileField(upload_to='audios/')
-    descriptions = models.ManyToManyField(Description, related_name="songs")
+    descriptions = models.ManyToManyField(Description, related_name="songs",null=True,blank=True)
 
-    def __init__(self) -> None:
-        self.descriptions = {}
 
     def give_tag(self, description:Description):
         if self._is_duplicate_tag_(description):

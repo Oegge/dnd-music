@@ -20,7 +20,14 @@ Songs
           <th>Actions</th>
         </tr>
       </thead>
+      <tbody>
     {% for song in songs %}
-    {% endfor %}
+        <tr>
+            <td>
+                song.name
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% endblock %}
