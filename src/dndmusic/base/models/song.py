@@ -7,11 +7,11 @@ class Song(models.Model):
     name = models.CharField(max_length=50)
     audio = models.FileField(upload_to='audios/')
     duration = models.CharField(max_length=8)
-    descriptions = models.ManyToManyField(Description, related_name="songs",null=True,blank=True)
+    descriptions = models.ManyToManyField(Description, related_name="songs",blank=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._calculate_duration_()
+        # self._calculate_duration_()
 
 
     def save(self, *args, **kwargs):

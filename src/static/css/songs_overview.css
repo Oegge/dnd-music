@@ -1,0 +1,8 @@
+.actions-container a {
+    margin-left: 10px;  /* or margin-right if you prefer */
+}
+
+/* To ensure the first icon doesn't have unwanted margin, reset it */
+.actions-container a:first-child {
+    margin-left: 0;
+}

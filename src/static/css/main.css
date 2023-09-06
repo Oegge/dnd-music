@@ -1,28 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Sawarabi+Mincho&family=Tinos:wght@700&display=swap');
 
+.content {
+  /* Your content styles */
+  margin-top: 100vh;
+  /* Adjust as needed to prevent content overlap */
+}
 
+.btn {
+  background-color: rgb(38, 38, 38);
+  color: rgb(217, 200, 183);
+}
 
-  .content {
-    /* Your content styles */
-    margin-top: 100vh; /* Adjust as needed to prevent content overlap */
-  }
+.headline {
+  background-color: black;
+  height: 6vh;
+  min-height: 50px;
 
-  .btn{
-    background-color: rgb(38, 38, 38);
-    color: rgb(217, 200, 183);
-  }
-  .headline{
-    background-color: black;
-    height: 6vh;
+}
 
-  }
-  .secondline{
-    background-color: rgb(64, 64, 64);
-    height: 5vh;
-    z-index: 1000; /* To ensure they are above other content */
-  }
+.secondline {
+  background-color: rgb(64, 64, 64);
+  height: 5vh;
+  min-height: 40px;
+  z-index: 1000;
+  /* To ensure they are above other content */
+}
 
-a:hover{
-  color: rgb(255 , 204, 153);
+a:hover {
+  color: rgb(255, 204, 153);
 }
 
 a {
@@ -31,30 +36,43 @@ a {
 
 body {
   color: rgb(217, 200, 183);
+  font-family: 'Sawarabi Mincho', serif;
+
 }
 
 .dragon {
-  height: 6vh;
-  margin-left: 10px;
-  /* overflow: hidden; to ensure no overflow */
+  height: 90%;
+  font-size: calc(16px + 2vh);
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  justify-content: center;
+  display: flex;
 
 }
+
+@media (max-height: 600px) {
+  body {
+    font-size: 14px;
+    /* This is the minimum font size */
+  }
+}
+
 
 
 .dragon img {
-  margin-top: 7px;
-  height: 5vh;
+  height: 50%;
+  width: auto;
 }
 
-.DND{
-justify-content: center;
-  font-size: 50px;
-  font-weight: 600;
+
+.DND {
+  font-family: 'Tinos';
+
 }
 
 .card {
-  background-color: rgb(86, 86, 86,0.5);
+  background-color: rgb(86, 86, 86, 0.5);
 }
 
-   /* * {    outline: 1px solid red;
-}    */
+ /* * {    outline: 1px solid red;
+}      */

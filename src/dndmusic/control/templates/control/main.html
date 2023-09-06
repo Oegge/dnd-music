@@ -84,28 +84,25 @@
     ></script>
   </head>
   <body>
-    <div style="height: 11vh">
+    <div style="height: 12vh;   min-height: 100px;
+    ">
       <div style="position: fixed; width: 100%">
-        <div class="headline row">
-          <div class="dragon col-3 row">
-            <div >
-              <img
-              src="{% static 'images/dragon_clef.png' %}"
-              alt="Description"
-              />
-            </div>
-            <div class="DND" style="margin-left: 10px;">DnD</div>
+        <div class="headline row" style="height: 6vh;">
+          <div class="dragon " style="left: 0; position: absolute; margin-left: 10px;">
+            <img src="{% static 'images/dragon_clef.png' %}"/>
+            <span class="DND" >DnD</span>
           </div>
           
           <div class="dragon" style="right: 0; position: absolute; margin-right: 50px;">
-            <img src="{% static 'images/dragon_clef_mini_norim.png' %}" alt="Description of Image">
+            <img src="{% static 'images/dragon_clef_mini_norim.png' %}" >
             
             <a href="{% url 'control:login' %}" >
               {% if user.is_authenticated %}{{ user.username }} {% else %} Login{% endif %} 
-            </a></div>
+            </a>
           </div>
-          {% comment %} the line {% endcomment %}
+        </div>
           {% block headline %}
+          {% comment %} the line {% endcomment %}
         <div style="height: 3px; background-color: rgb(217, 200, 183)"></div>
         <div class="secondline">sdgdsg</div>
         {% endblock headline %}
