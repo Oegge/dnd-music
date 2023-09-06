@@ -25,3 +25,10 @@ class AddSong(View, LoginRequiredMixin):
         context={'user':user
         }
         return render(request,'control/songs/add_song.html',context=context)    
+    
+class PlaySong(View,LoginRequiredMixin):
+    def get(self,request,song_id):
+        songs = Song.objects.all()
+        context={'songs':songs} 
+        return render(request,'control/songs/play.html',context=context)    
+        

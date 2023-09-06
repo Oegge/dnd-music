@@ -1,0 +1,22 @@
+{% extends 'control/main.html' %} 
+{% load static %} 
+{% block title %} Songs {%endblock title %} 
+
+{% block content %}
+{% for song in songs %}
+{{song.audio}}
+<audio controls id="linkAudio">
+    <source src="{{song.audio}}" type="audio/ogg">
+    <source src="{{song.audio}}" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+  
+{% endfor %}
+
+
+  <script>
+    document.getElementById("link_id").addEventListener("click", function () {
+      document.getElementById("linkAudio").play();
+    });
+  </script>
+{% endblock  %}

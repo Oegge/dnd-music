@@ -6,7 +6,7 @@ import datetime
 class Song(models.Model):
     name = models.CharField(max_length=50)
     audio = models.FileField(upload_to='audios/')
-    duration = models.CharField(max_length=8)
+    duration = models.CharField(max_length=8,null=True,blank=True)
     descriptions = models.ManyToManyField(Description, related_name="songs",blank=True)
 
     def save(self, *args, **kwargs):
