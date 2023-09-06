@@ -4,6 +4,7 @@
 
 {% block content %}
 {% for song in songs %}
+<br>
 {{song.audio}}
 <audio controls id="linkAudio">
     <source src="{{song.audio}}" type="audio/ogg">

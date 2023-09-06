@@ -74,5 +74,9 @@ body {
   background-color: rgb(86, 86, 86, 0.5);
 }
 
+.background{
+  display: flex;
+}
+
  /* * {    outline: 1px solid red;
 }      */

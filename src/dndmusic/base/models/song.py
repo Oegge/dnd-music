@@ -34,6 +34,7 @@ class Song(models.Model):
 
     def _calculate_duration_(self):
         audio_path = self.audio.path
+        print(self.audio.path)
         audio_segment = AudioSegment.from_file(audio_path)
         duration_in_seconds = int(len(audio_segment) / 1000) 
         duration_obj = datetime.timedelta(seconds=duration_in_seconds)
