@@ -13,10 +13,21 @@ class Song(models.Model):
         super().__init__(*args, **kwargs)
         self._calculate_duration_()
 
+
+    def save(self, *args, **kwargs):
+        if not self.duration:
+            try:
+                self._calculate_duration_()
+            except Exception as e:
+                print(e)
+        super().save(*args, **kwargs)  
+
+
     def give_tag(self, description:Description):
         if self._is_duplicate_tag_(description):
             self._remove_same_tags_(description)
         self.descriptions.append(description)
+
 
     def _is_duplicate_tag_(self, description:Description) -> bool:
         tags = {description.get_tag() for description in self.descriptions}
