@@ -101,15 +101,16 @@
             </a>
           </div>
         </div>
-          {% block headline %}
           {% comment %} the line {% endcomment %}
         <div style="height: 3px; background-color: rgb(217, 200, 183)"></div>
-        <div class="secondline">sdgdsg</div>
+        {% block headline %}
+
+        <div class="secondline">no headline set</div>
         {% endblock headline %}
       </div>
       <div>{% block sideline_left %}{% endblock sideline_left %}</div>
       
-      {% include 'control/navigation.html' %}
+      <div> {% include 'control/navigation.html' %}</div>
     </div>
       
       <div class="background">

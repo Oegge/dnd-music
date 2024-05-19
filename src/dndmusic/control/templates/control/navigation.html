@@ -1,0 +1,10 @@
+
+{% block navbar %}
+  <ul class="navbar">
+    {% for item in navigation_items %}
+      <li>
+        <a href="{{ item.url }}">{{ item.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

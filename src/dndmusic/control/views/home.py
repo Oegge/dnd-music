@@ -51,8 +51,9 @@ class MainPage(View, LoginRequiredMixin):
     template_name = "control/home.html"
 
     def get(self, request):
-        print(request.user)
-        return render(request, self.template_name, )
+        context = {}  # Define your context here, if any
+        
+        return render(request, self.template_name,context=context )
 
 
 class Songs(View, LoginRequiredMixin):
