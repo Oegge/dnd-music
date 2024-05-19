@@ -58,7 +58,7 @@ class MainPage(View, LoginRequiredMixin):
 
 class Songs(View, LoginRequiredMixin):
     def get(self, request):
-        user = request.user
+        user = request.userzz
         songs=Song.objects.all()
         context={'songs':songs,
 

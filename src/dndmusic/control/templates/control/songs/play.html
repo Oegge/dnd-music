@@ -1,23 +1,30 @@
-{% extends 'control/main.html' %} 
-{% load static %} 
-{% block title %} Songs {%endblock title %} 
+{% extends 'control/main.html' %}
+{% load static %}
+
+{% block title %}Songs{% endblock title %}
+
 
 {% block content %}
-{% for song in songs %}
-<br>
-{{song.audio}}
-<audio controls id="linkAudio">
-    <source src="{{song.audio}}" type="audio/ogg">
-    <source src="{{song.audio}}" type="audio/mpeg">
-  Your browser does not support the audio element.
+<div class="container">
+  <h1>Playlist</h1>
+  <div id="playlist">
+    {% for song in songs %}
+    <div class="song" data-audio="{{ song.audio.url }}" id="{{song.name}}">
+      <p>{{ song.name }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <audio id="audioPlayer" controls>
+    <source id="audioSource" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
-  
-{% endfor %}
+  <button id="saveOrderButton">Save Playlist</button>
 
+</div>
+{% endblock %}
+{% block css_files %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
+  <script src="{% static 'scripts/playlists.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 
-  <script>
-    document.getElementById("link_id").addEventListener("click", function () {
-      document.getElementById("linkAudio").play();
-    });
-  </script>
-{% endblock  %}
+{% endblock %}

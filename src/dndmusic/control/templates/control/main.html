@@ -83,17 +83,18 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
-    <div style="height: 12vh;   min-height: 100px;
-    ">
+    <div style="height: 12vh;   min-height: 100px;">
       <div style="position: fixed; width: 100%">
-        <div class="headline row" style="height: 6vh;">
-          <div class="dragon " style="left: 0; position: absolute; margin-left: 10px;">
+        <div class="headline">
+          <div class="icon" >
             <img src="{% static 'images/dragon_clef.png' %}"/>
-            <span class="DND" >DnD</span>
+            <span class="DND">Music Manager /  {% block title %}
+
+              {% endblock title %}</span>
           </div>
-          
-          <div class="dragon" style="right: 0; position: absolute; margin-right: 50px;">
+          <div class="dragon-right" >
             <img src="{% static 'images/dragon_clef_mini_norim.png' %}" >
             
             <a href="{% url 'control:login' %}" >
@@ -102,26 +103,17 @@
           </div>
         </div>
           {% comment %} the line {% endcomment %}
-        <div style="height: 3px; background-color: rgb(217, 200, 183)"></div>
         {% block headline %}
 
-        <div class="secondline">no headline set</div>
         {% endblock headline %}
       </div>
       <div>{% block sideline_left %}{% endblock sideline_left %}</div>
+      <div class="secondline"></div>
       
       <div> {% include 'control/navigation.html' %}</div>
     </div>
-      
       <div class="background">
-        <h1>
-          {% block title %}
-
-          {% endblock title %}
-        </h1>
         <br>
-
-
           {% block body %}
 
             {% block content %}

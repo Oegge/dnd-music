@@ -1,53 +1,142 @@
+/* Import external fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Sawarabi+Mincho&family=Tinos:wght@700&display=swap');
 
-.content {
-  /* Your content styles */
-  margin-top: 100vh;
-  /* Adjust as needed to prevent content overlap */
-}
-
-.btn {
-  background-color: rgb(38, 38, 38);
+body {
   color: rgb(217, 200, 183);
+  font-family: 'Sawarabi Mincho', serif;
+  background-color: black;
+  /* Standard body background */
 }
 
 .headline {
   background-color: black;
   height: 6vh;
   min-height: 50px;
+  position: fixed;
+  width: 100vw; 
+  top: 0;
+  left: 0;
+  z-index: 30;
+  margin: 0;      
+  padding: 0;     
+  box-sizing: border-box; 
+}
+
+.icon {
+  height: 80%;
+  font-size: calc(16px + 2vh);
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  justify-content: left;
+  display: flex;
+  position: relative; /* Updated this line */
+  left: 0; /* Aligns to the left */
+  margin-left: 5px;
+  top: 5px; /* Pushes the icon down by 50px */
+}
+
+.dragon-right {
+  position: absolute; margin-right: 50px;
+  height: 80%;
+  font-size: calc(16px + 2vh);
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  right: 0; /* Positions right */
+  margin-right: 50px;
+  top: 5px; /* Moves the dragon-right image down */
+}
+
+.dragon img {
+  height: 50%;
+  width: auto;
+  margin-right: 10px;
+  /* Adds space between the image and the text */
 
 }
 
+.DND {
+  font-family: 'Dancing Script', cursive; /* Specify the font family */
+  font-weight: bold; /* Standard bold */
+  margin-left: 15px;
+  text-shadow: 
+      2px 2px 0 #ffffff,   /* Right/down shadow */
+     -1px -1px 0 #ffffff,  /* Left/up shadow */
+  /* This will create a bold-like effect */
+}
+
+
 .secondline {
-  background-color: rgb(64, 64, 64);
-  height: 5vh;
-  min-height: 40px;
+  background: linear-gradient(to bottom, rgb(110, 110, 110) 0%, rgb(255, 255, 255) 100%); /* Gradient from dark gray to white */
+  height: 0.5vh; /* Adjust the thickness of the line */
   z-index: 1000;
-  /* To ensure they are above other content */
+  width: 100%; /* Ensure the line extends across the full width of the viewport */
+  position: fixed; /* Fix the position to ensure it stays in place as you scroll */
+  top: 6vh; /* Adjust this value based on the actual position you want */
+}
+
+
+.navbar {
+  background-color: rgb(38, 38, 38);
+  color: rgb(217, 200, 183);
+  padding: 10px 0;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+  top: 6.5vh;
+}
+
+.navbar li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
 }
 
 a:hover {
   color: rgb(255, 204, 153);
 }
 
-a {
-  color: rgb(217, 200, 183);
+.content {
+  margin-top: 100px;
+  padding: 20px;
 }
 
-body {
-  color: rgb(217, 200, 183);
-  font-family: 'Sawarabi Mincho', serif;
-
+.card {
+  background-color: rgb(86, 86, 86, 0.5);
 }
 
-.dragon {
-  height: 90%;
-  font-size: calc(16px + 2vh);
-  font-family: 'Dancing Script', cursive;
-  text-align: center;
-  justify-content: center;
+.background {
   display: flex;
+  flex-direction: column;
+  /* Stack children vertically */
+}
 
+@media (max-width: 768px) {
+  .navbar li {
+    display: block;
+    /* Stack navigation items vertically on small screens */
+    margin: 5px 0;
+    /* Adjust margin for smaller screens */
+  }
+
+  .navbar {
+    text-align: left;
+    /* Align to left on small screens */
+
+  }
+
+  .content {
+    margin-top: 150px;
+    /* Increase top margin on small screens */
+  }
 }
 
 @media (max-height: 600px) {
@@ -56,27 +145,3 @@ body {
     /* This is the minimum font size */
   }
 }
-
-
-
-.dragon img {
-  height: 50%;
-  width: auto;
-}
-
-
-.DND {
-  font-family: 'Tinos';
-
-}
-
-.card {
-  background-color: rgb(86, 86, 86, 0.5);
-}
-
-.background{
-  display: flex;
-}
-
- /* * {    outline: 1px solid red;
-}      */

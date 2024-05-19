@@ -22,6 +22,7 @@ urlpatterns = [
         playlists.EditPlaylist.as_view(),
         name="playlists.edit",
     ),
+    path("update_order/", playlists.UpdatePlaylist.as_view(), name="UpdatePlaylist"),
     path(
         "tagging/tags/overview",
         tagging.TagOverview.as_view(),
