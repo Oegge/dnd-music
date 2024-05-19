@@ -59,7 +59,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "dndmusic.control.middleware.login.LoginRequiredMiddleware",
-    "dndmusic.control.middleware.navigation_middleware.NavigationMiddleware",
 ]
 
 ROOT_URLCONF = "dndmusic.urls"
@@ -75,6 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "dndmusic.control.context_processor.custom_context",
             ],
         },
     },
