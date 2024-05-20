@@ -18,6 +18,15 @@ class PlaylistOverview(View, LoginRequiredMixin):
             request, "control/playlists/playlist_overview.html", context=context
         )
 
+class ShowPlaylist(View, LoginRequiredMixin):
+    def get(self, request, pk):
+        user = request.user
+        playlist = Playlist.objects.get(id=pk)
+        context = {"playlist": playlist, "user": user}
+        return render(
+            request, "control/playlists/playlist.html", context=context
+        )
+
 
 class EditPlaylist(View, LoginRequiredMixin):
     def get(self, request, playlist_id):
@@ -39,3 +48,10 @@ class UpdatePlaylist(View, LoginRequiredMixin):
         user = request.user
         context = {"user": user}
         return render(request, "control/playlists/new_playlist.html", context=context)
+    
+    def post(self, request):
+        print(request.POST)
+        
+        return 
+        
+    

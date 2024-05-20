@@ -96,30 +96,27 @@
           </div>
           <div class="dragon-right" >
             <img src="{% static 'images/dragon_clef_mini_norim.png' %}" >
-            
             <a href="{% url 'control:login' %}" >
               {% if user.is_authenticated %}{{ user.username }} {% else %} Login{% endif %} 
             </a>
           </div>
         </div>
-          {% comment %} the line {% endcomment %}
-        {% block headline %}
-
-        {% endblock headline %}
       </div>
       <div>{% block sideline_left %}{% endblock sideline_left %}</div>
       <div class="secondline"></div>
-      
       <div> {% include 'control/navigation.html' %}</div>
     </div>
       <div class="background">
         <br>
-          {% block body %}
-
+        {% block body %}
+          <div class="container">
             {% block content %}
+
             {% endblock content %} 
-           
-          {% endblock body %}
-        </div>
+          </div>
+        {% endblock body %}
+      </div>
+    </div>
+    {% block scripts %}{% endblock scripts %}
   </body>
 </html>

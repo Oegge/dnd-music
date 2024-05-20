@@ -9,7 +9,7 @@
   <h1>Playlist</h1>
   <div id="playlist">
     {% for song in songs %}
-    <div class="song" data-audio="{{ song.audio.url }}" id="{{song.name}}">
+    <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
       <p>{{ song.name }}</p>
     </div>
     {% endfor %}

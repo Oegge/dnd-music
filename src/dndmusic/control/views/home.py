@@ -48,11 +48,14 @@ class LandingPage(View, LoginRequiredMixin):
 
 
 class MainPage(View, LoginRequiredMixin):
+   
     template_name = "control/home.html"
 
     def get(self, request):
-        context = {}  # Define your context here, if any
-        
+        user = request.user
+        recent_songs = user.uploaded_songs.all().order_by('-last_played')[:5]  # Get the last 5 played songs
+        context = {'recent_songs': recent_songs}
+
         return render(request, self.template_name,context=context )
 
 

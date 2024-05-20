@@ -2,12 +2,15 @@ from django.db import models
 from dndmusic.base.models.tagging import Description
 from pydub import AudioSegment
 import datetime
+from django.contrib.auth.models import User
 
 class Song(models.Model):
     name = models.CharField(max_length=50)
     audio = models.FileField(upload_to='audios/')
     duration = models.CharField(max_length=8,null=True,blank=True)
     descriptions = models.ManyToManyField(Description, related_name="songs",blank=True)
+    last_played = models.DateTimeField(null=True, blank=True)
+    uploader = models.ForeignKey(User, related_name='uploaded_songs', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         if not self.duration:

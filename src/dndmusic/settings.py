@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dndmusic.base",
+    "rest_framework",
     "dndmusic.control",
     "crispy_forms",
     "crispy_bootstrap4",

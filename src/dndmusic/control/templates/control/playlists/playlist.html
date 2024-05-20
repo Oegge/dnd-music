@@ -1,0 +1,28 @@
+{% extends 'control/main.html' %}
+{% load static %}
+
+{% block title %}{{playlist.name}}{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div id="playlist">
+    {% for song in playlist.songs.all %}
+    <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
+      <p>{{ song.name }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <audio id="audioPlayer" controls>
+    <source id="audioSource" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <button id="saveOrderButton">Save Playlist</button>
+
+</div>
+{% endblock %}
+{% block css_files %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
+  <script src="{% static 'scripts/playlists.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+{% endblock %}

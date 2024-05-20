@@ -2,6 +2,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var playlist = document.getElementById('playlist');
+    var saveOrderButton = document.getElementById('saveOrderButton');
+    saveOrderButton.addEventListener('click', saveOrder);
 
     var sortable = new Sortable(playlist, {
         animation: 150,
@@ -59,4 +61,44 @@ document.addEventListener("DOMContentLoaded", function () {
             currentSongIndex++;
         }
     }
+    function saveOrder() {
+        const order = Array.from(songs).map(song => song.getAttribute('id'));
+        console.log(songs)
+        fetch('/api/update_order/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCookie('csrftoken'),  // CSRF token for Django
+            },
+            body: new URLSearchParams({
+                'order[]': order
+            }).toString()
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('Order saved successfully');
+                } else {
+                    console.log('Failed to save order');
+                }
+            });
+    }
 });
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+

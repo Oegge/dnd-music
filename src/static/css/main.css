@@ -1,6 +1,10 @@
 /* Import external fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Sawarabi+Mincho&family=Tinos:wght@700&display=swap');
-
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 body {
   color: rgb(217, 200, 183);
   font-family: 'Sawarabi Mincho', serif;

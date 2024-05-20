@@ -1,0 +1,73 @@
+.home-container {
+    font-family: 'Cinzel', serif; /* A D&D-esque font */
+    padding: 20px;
+}
+.buttons button {
+    background: hsl(256, 73%, 58%) ;
+    /* background: linear-gradient(135deg, hsl(256, 73%, 58%) 0%, #88d3ce 100%); */
+    color: white;
+    border: 0;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.buttons button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%; /* Ensures gradient covers during transition */
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    z-index: 0;
+}
+
+.buttons button:hover::before {
+    animation: shimmer 1.5s infinite linear;
+}
+
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.buttons button:hover {
+    background: linear-gradient(135deg, #88d3ce 0%, #6e45e2 100%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+
+.recent-songs h2 {
+    color: darkgoldenrod;
+}
+
+.song-item {
+    background-color: beige;
+    margin: 10px 0;
+    padding: 5px;
+    border-left: 5px solid gold;
+    list-style-type: none;
+}
+
+.song-name {
+    font-weight: bold;
+}
+
+.song-played {
+    float: right;
+    font-style: italic;
+}
