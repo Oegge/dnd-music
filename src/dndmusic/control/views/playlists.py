@@ -22,8 +22,10 @@ class PlaylistOverview(View, LoginRequiredMixin):
 class ShowPlaylist(View, LoginRequiredMixin):
     def get(self, request, pk):
         user = request.user
-        playlist = Playlist.objects.get(id=pk)
-        context = {"playlist": playlist, "user": user}
+        playlist=Playlist.objects.get(id=pk)
+        songs = playlist.get_ordered_songs()
+        print(playlist)
+        context = {"songs": songs, "playlist":playlist,"user": user}
         return render(
             request, "control/playlists/playlist.html", context=context
         )
@@ -45,15 +47,31 @@ class NewPlaylist(View, LoginRequiredMixin):
         return render(request, "control/playlists/new_playlist.html", context=context)
 
     def post(self, request):
-        form = AddSongForm(request.POST)
-        user = request.user
+        song_ids = request.POST.getlist('song_ids[]')
+        try:
+            song_ids = [int(song_id) for song_id in song_ids]
+        except ValueError:
+        # Handle the error if conversion fails
+            song_ids = []
+        print(song_ids)
         
-        if form.is_valid():
-            playlist = form.save()
+        if song_ids is not None:
+            print(song_ids)
+            songs = Song.objects.filter(id__in=song_ids)
+            playlist = Playlist()
+            playlist.save()
+            playlist.name = request.POST.get('name')
+            playlist.songs.set(songs)
+            playlist.song_ids_ordered = song_ids
+            playlist.save()
+            
+            user = request.user
             return redirect('control:playlist-detail', pk=playlist.pk) 
-        context = {"user": user,'form':form}
-        
+        user = request.user
+        songs = Song.objects.all()
+        context = {"user": user,'songs':songs}
         return render(request, "control/playlists/new_playlist.html", context=context)
+
    
 class UpdatePlaylist(View, LoginRequiredMixin):
     def get(self, request):

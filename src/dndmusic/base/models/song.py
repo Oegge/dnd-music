@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from dndmusic.base.models.tagging import Tag
 from pydub import AudioSegment
@@ -13,6 +14,9 @@ class Song(models.Model):
     tags = models.ManyToManyField('Tag', related_name='songs')
 
     def save(self, *args, **kwargs):
+        if self.name:
+            base, ext = os.path.splitext(self.name)
+            self.name = base
         if not self.duration:
             try:
                 self._calculate_duration_()

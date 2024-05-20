@@ -21,10 +21,16 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="playlist-container">
-            Playlist
-            <div id="playlist" class="drag-container"></div>
-        </div>
+        <form id="playlist-form" action="{% url 'control:playlists.new' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="name" id="hidden-name">
+
+            <div class="playlist-container">
+                Playlist
+                <div id="playlist" class="drag-container"></div>
+            </div>
+            <button type="submit" class="submit-btn">Submit Playlist</button>
+        </form>
     </div>
 </div>
 
@@ -32,6 +38,13 @@
 {% block scripts %}
 <script src="https://unpkg.com/dragula/dist/dragula.min.js"></script>
 <script src="{% static 'scripts/addplaylist.js' %}"></script>
+<script>
+    document.getElementById('playlist-form').addEventListener('submit', function() {
+        var nameInput = document.getElementById('name');
+        var hiddenNameInput = document.getElementById('hidden-name');
+        hiddenNameInput.value = nameInput.value;
+    });
+</script>
 {% endblock %}
 {% block css_files %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/add-playlist.css' %}" />

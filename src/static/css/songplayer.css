@@ -1,7 +1,6 @@
 
 
 #playlist {
-    width: 250px;
     padding: 20px;
     background-color: #76767644;
     display: flex;
@@ -15,7 +14,6 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
-    width: 100%;
 }
 
 #playlist .song:hover {

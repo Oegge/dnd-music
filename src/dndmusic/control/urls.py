@@ -11,7 +11,7 @@ urlpatterns = [
     path("home", home.MainPage.as_view(), name="home"),
     path("", RedirectView.as_view(url="/home", permanent=False), name="index"),
     path("songs/overview", songs.SongOverview.as_view(), name="songs.overview"),
-    path("songs/add", songs.AddSong.as_view(), name="songs.add"),
+    path("songs/add", songs.BulkAddSongsView.as_view(), name="songs.add"),
     path(
         "playlists/overview",
         playlists.PlaylistOverview.as_view(),
@@ -35,4 +35,6 @@ urlpatterns = [
     path("song/play/<int:song_id>", songs.PlaySong.as_view(), name="play.single.song"),
     path("api/update_order/", update_song_order, name="update_order"),
     path("playlists/<int:pk>", playlists.ShowPlaylist.as_view(), name="playlist-detail"),
+    path('add_bulk_songs/', songs.BulkAddSongsView.as_view(), name='add_bulk_songs'),
+
 ]

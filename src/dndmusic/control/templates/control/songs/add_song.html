@@ -2,3 +2,10 @@
 {% load static %}
 
 {% block title %}Add Song{% endblock title %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{crispy|form }}
+    <button type="submit">Upload</button>
+</form>
+{% endblock content %}

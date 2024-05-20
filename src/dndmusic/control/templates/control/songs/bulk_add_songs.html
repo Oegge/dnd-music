@@ -1,0 +1,64 @@
+{% extends 'control/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Song{% endblock title %}
+{% block content %}
+<form id="upload-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div id="form-container"></div> <!-- Container for dynamic forms -->
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}
+
+{% block scripts %}
+
+<!-- Include Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Include Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    const tagsArray = [
+    {% for tag in tags %}
+    { id: "{{ tag.id }}", name: "{{ tag.name }}" },
+    {% endfor %}
+];
+document.addEventListener("DOMContentLoaded", function() {
+    const fileInput = document.getElementById('id_audio_files');
+
+    fileInput.addEventListener('change', function() {
+        const fileList = this.files;
+        const formContainer = document.getElementById('form-container');
+
+        formContainer.innerHTML = ''; // Clear previous forms
+
+        Array.from(fileList).forEach((file, index) => {
+            const fileForm = document.createElement('div');
+            const selectHTML = tagsArray.map(tag => `<option value="${tag.id}">${tag.name}</option>`).join('');
+
+            fileForm.innerHTML = `
+                <label>Song Name:</label>
+                <input  type="text" name="song_name_${index}" value="${file.name.replace(/\..+$/, '')}" class="form-control input-song-name">
+                <label>Tags:</label>
+                <select multiple name="tags_${index}" class="form-control">${selectHTML}</select>
+            `;
+            formContainer.appendChild(fileForm);
+    
+        });
+        $('select[name^="tags_"]').select2({
+            placeholder: "Select tags",
+            allowClear: true
+        });
+    });
+
+});
+
+</script>{% endblock scripts %}
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bulkaddsongs.css' %}" />
+
+{% endblock css_files %}

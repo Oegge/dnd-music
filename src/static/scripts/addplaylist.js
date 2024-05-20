@@ -2,16 +2,26 @@
 
 
  var drake =  dragula([document.getElementById("song-list"), document.getElementById("playlist")])
- .on('drag', function (el) {
-   el.className = el.className.replace('ex-moved', '');
- }).on('drop', function (el) {
-   el.className += ' ex-moved';
- }).on('over', function (el, container) {
-   container.className += ' ex-over';
- }).on('out', function (el, container) {
-   container.className = container.className.replace('ex-over', '');
- });
- 
+ drake.on('drop', function(el, target, source, sibling) {
+    // Check if the element was dropped in the playlist
+    if (target.id === 'playlist') {
+        var songId = el.dataset.id; // Get the song ID
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'song_ids[]';
+        input.value = songId;
+        document.getElementById('playlist-form').appendChild(input);
+    } else if (source.id === 'playlist') {
+        // Handle removing elements from the playlist
+        var inputs = document.getElementById('playlist-form').querySelectorAll('input');
+        Array.from(inputs).forEach(input => {
+            if (input.value === el.dataset.id) {
+                input.remove(); // Remove the input if the song is dragged out
+            }
+        });
+    }
+});
+
 drake.on('drag', function(el) {
     // Play the audio associated with the element being dragged
     var audioId = 'audio-' + el.dataset.id;

@@ -1,14 +1,13 @@
 {% extends 'control/main.html' %}
 {% load static %}
 
-{% block title %}{{playlist.name}}{% endblock title %}
+{% block title %}{{playlist}}{% endblock title %}
 
 {% block content %}
-<div class="container">
   <div id="playlist">
-    {% for song in playlist.songs.all %}
+    {% for song in songs %}
     <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
-      <p>{{ song.name }}</p>
+      <p>{{ song }}</p>
     </div>
     {% endfor %}
   </div>
@@ -18,7 +17,6 @@
   </audio>
   <button id="saveOrderButton">Save Playlist</button>
 
-</div>
 {% endblock %}
 {% block css_files %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />

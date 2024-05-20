@@ -6,7 +6,9 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 from dndmusic.base.models.song import Song
 from django.shortcuts import render, redirect
+from dndmusic.base.models.tagging import Tag
 from dndmusic.control.forms.login import LoginForm
+from dndmusic.control.forms.BulkUploadForm import BulkUploadForm
 
 
 class SongOverview(View, LoginRequiredMixin):
@@ -32,3 +34,31 @@ class PlaySong(View,LoginRequiredMixin):
         context={'songs':songs} 
         return render(request,'control/songs/play.html',context=context)    
         
+class BulkAddSongsView(View, LoginRequiredMixin):
+    template_name = 'control/songs/bulk_add_songs.html'
+
+    def get(self, request):
+        form = BulkUploadForm()
+        tags = Tag.objects.all()
+        return render(request, self.template_name, {'form': form,'tags':tags})
+
+    def post(self, request):
+        form = BulkUploadForm(request.POST, request.FILES)
+        print(request.POST)
+        tags= list(Tag.objects.all())
+        if form.is_valid():
+            files = request.FILES.getlist('audio_files')
+            for i, f  in enumerate(files):
+                song = Song(audio=f, name=f.name, uploader=request.user)
+                song.save()
+                
+                try:
+                    tags = request.POST[f'tags_{i}']
+                    song.tags.set(Tag.objects.filter(id__in=tags))
+                    song.save()
+                except:
+                    song.tags.set(Tag.objects.filter(id=1))
+                    song.save()
+                
+            return redirect(reverse('control:songs.overview'))  # Redirect to a success page or similar
+        return render(request, self.template_name, {'form': form})
