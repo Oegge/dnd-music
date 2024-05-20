@@ -11,7 +11,7 @@
     margin: 5px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 30px;
     font-family: 'Cinzel', serif;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -70,4 +70,22 @@
 .song-played {
     float: right;
     font-style: italic;
+}
+
+.card {
+    background: #ffffff25; /* Light background for the card */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the card */
+    margin: 20px; /* Margin around the card to separate it from other content */
+}
+.home-container .card {
+    background: #5d5b9359; /* Light background for the card */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.506); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the card */
+    margin: 20px; /* Margin around the card to separate it from other content */
+}
+.home-container .card:hover {
+   transform: scale(1.1);
 }

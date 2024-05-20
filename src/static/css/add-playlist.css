@@ -1,0 +1,82 @@
+.container {
+    display: flex;
+    flex-direction: column;  /* Ensures vertical stacking for the main container */
+    align-items: center;  /* Centers the children horizontally */
+    width: 100%;  /* Full width to accommodate all child elements */
+}
+.input-container {
+    width: 90%;  /* Adjust based on your layout needs */
+    margin-bottom: 20px;  /* Adds space below the input container */
+    padding: 10px;  /* Padding around the inputs */
+    border: 1px solid #ccc;  /* Subtle border around the input container */
+    border-radius: 8px;  /* Rounded corners for aesthetics */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* Soft shadow for a subtle depth */
+    background-color: #ffffff44;  /* White background */
+}
+.row {  /* New class for the row containing song and playlist sections */
+    display: flex;
+    flex-direction: row;  /* Horizontal layout */
+    justify-content: center;  /* Centers the items horizontally */
+    align-items: start;  /* Aligns items at the top */
+    width: 100%;  /* Full width to stretch across the container */
+}
+
+.input-container input {
+    width: 100%;  /* Full width of their container */
+    padding: 8px 10px;  /* Padding inside the input for better text visibility */
+    margin-top: 5px;  /* Margin top for spacing between label and input */
+    border: 1px solid #ddd;  /* Light border for the input */
+    border-radius: 4px;  /* Slightly rounded corners for the input fields */
+    box-sizing: border-box; 
+    background-color: #ffffff44;
+    color: #000;
+}
+.song-list-container, .playlist-container {
+    flex: 1;  /* Each takes up equal space */
+    margin: 10px;  /* Space between the two containers */
+    min-width: 300px;  /* Minimum width for each container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffffff44;
+}
+
+#song-list, #playlist {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 300px; /* Ensures each has a minimum height */
+    border-radius: 10px;
+    background-color: #ffffff44; /* Adds a background color for better visibility */
+}
+
+.song-item {
+    padding: 5px 10px;
+    background-color: #ffffff44;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    cursor: grab;
+    border-radius: 5px;
+}
+.ex-over{
+color: rgb(152, 84, 84);
+}
+input::placeholder { /* Universal placeholder styling */
+    color: #888; /* Sets the placeholder text to a light grey color */
+    opacity: 1; /* Ensures the color isn't further faded out */
+}
+
+/* Specific styling for different input fields if needed */
+#name::placeholder {
+    color: #a0a0a0; /* Example of a different placeholder color for the name field */
+}
+
+#song-filter::placeholder {
+    color: #b0b0b0; /* Example of a different placeholder color for the song filter field */
+}
+
+.filter-songs{
+    background-color: #ffffff44 ;
+    border: 1px solid #00000047;
+
+}

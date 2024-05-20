@@ -7,12 +7,12 @@
 {% endblock headline %}
 
 {% block content %}
-<div class="home-container">
+<div class="home-container card card-body">
     <div class="buttons">
         <button onclick="window.location.href='{% url 'control:songs.add' %}'">Add New Song</button>
         <button onclick="window.location.href='{% url 'control:playlists.new' %}'">Create New Playlist</button>
     </div>
-    <div class="recent-songs">
+    <div class="card recent-songs">
         <h2>Recently Played Songs</h2>
         <ul>
             {% for song in recent_songs %}

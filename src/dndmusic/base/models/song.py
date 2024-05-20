@@ -1,5 +1,5 @@
 from django.db import models
-from dndmusic.base.models.tagging import Description
+from dndmusic.base.models.tagging import Tag
 from pydub import AudioSegment
 import datetime
 from django.contrib.auth.models import User
@@ -8,9 +8,9 @@ class Song(models.Model):
     name = models.CharField(max_length=50)
     audio = models.FileField(upload_to='audios/')
     duration = models.CharField(max_length=8,null=True,blank=True)
-    descriptions = models.ManyToManyField(Description, related_name="songs",blank=True)
     last_played = models.DateTimeField(null=True, blank=True)
     uploader = models.ForeignKey(User, related_name='uploaded_songs', on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag', related_name='songs')
 
     def save(self, *args, **kwargs):
         if not self.duration:
@@ -20,18 +20,6 @@ class Song(models.Model):
                 print(e)
         super().save(*args, **kwargs)  
 
-
-    def give_tag(self, description:Description):
-        if self._is_duplicate_tag_(description):
-            self._remove_same_tags_(description)
-        self.descriptions.append(description)
-
-
-    def _is_duplicate_tag_(self, description:Description) -> bool:
-        tags = {description.get_tag() for description in self.descriptions}
-        tag = description.get_tag()
-        return tag in tags
-    
 # --------------------------------------------------------------------------
 # private methods:
 
@@ -43,5 +31,7 @@ class Song(models.Model):
         duration_obj = datetime.timedelta(seconds=duration_in_seconds)
         self.duration = str(duration_obj)
     
-    def _remove_same_tags_(self, description:Description):
-        self.descriptions = [item for item in self.descriptions if item.get_tag() != description.get_tag()]
+    
+
+    def __str__(self) -> str:
+        return self.name

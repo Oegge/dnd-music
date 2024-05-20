@@ -1,0 +1,39 @@
+{% extends 'control/main.html' %}
+{% load static %}
+{% block title %}Add Playlist{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="input-container">
+        Name
+        <input type="text" id="name" placeholder="Enter name...">
+    </div>
+    <div class="row">
+        <div class="song-list-container">
+            Songs
+            <input class="filter-songs" type="text" id="song-filter" oninput="filterSongs()" placeholder="Filter songs...">
+            <div id="song-list">
+                {% for song in songs %}
+                <div class="song-item" data-id="{{ song.id }}" data-tags="{{ song.tags.all|join:', ' }}">
+                    {{ song.name }}
+                    <small>{{ song.tags.all|join:', ' }}</small>
+                    <audio id="audio-{{ song.id }}" src="{{ song.audio.url }}" preload="none"></audio>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="playlist-container">
+            Playlist
+            <div id="playlist" class="drag-container"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+{% block scripts %}
+<script src="https://unpkg.com/dragula/dist/dragula.min.js"></script>
+<script src="{% static 'scripts/addplaylist.js' %}"></script>
+{% endblock %}
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/add-playlist.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/dragular.css' %}" />
+{% endblock css_files %}

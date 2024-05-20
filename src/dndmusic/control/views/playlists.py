@@ -7,7 +7,8 @@ from django.views.generic import ListView
 from dndmusic.base.models.playlist import Playlist
 from django.shortcuts import render, redirect
 from dndmusic.control.forms.login import LoginForm
-
+from dndmusic.control.forms.AddSongForm import AddSongForm
+from dndmusic.base.models.song import Song
 
 class PlaylistOverview(View, LoginRequiredMixin):
     def get(self, request):
@@ -39,10 +40,21 @@ class EditPlaylist(View, LoginRequiredMixin):
 class NewPlaylist(View, LoginRequiredMixin):
     def get(self, request):
         user = request.user
-        context = {"user": user}
+        songs = Song.objects.all()
+        context = {"user": user,'songs':songs}
         return render(request, "control/playlists/new_playlist.html", context=context)
 
-
+    def post(self, request):
+        form = AddSongForm(request.POST)
+        user = request.user
+        
+        if form.is_valid():
+            playlist = form.save()
+            return redirect('control:playlist-detail', pk=playlist.pk) 
+        context = {"user": user,'form':form}
+        
+        return render(request, "control/playlists/new_playlist.html", context=context)
+   
 class UpdatePlaylist(View, LoginRequiredMixin):
     def get(self, request):
         user = request.user

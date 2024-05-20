@@ -30,11 +30,7 @@ urlpatterns = [
         name="tagging.tags.overview",
     ),
     path("tagging/tags/new", tagging.NewTag.as_view(), name="tagging.tags.new"),
-    path(
-        "tagging/scales/overview",
-        tagging.ScaleOverview.as_view(),
-        name="tags.scales.overview",
-    ),
+   
     path("tagging/scales/new", tagging.NewScale.as_view(), name="tagging.scales.new"),
     path("song/play/<int:song_id>", songs.PlaySong.as_view(), name="play.single.song"),
     path("api/update_order/", update_song_order, name="update_order"),

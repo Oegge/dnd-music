@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "dndmusic.base",
-    "rest_framework",
+    "rest_framework",    'django_select2',
+
     "dndmusic.control",
     "crispy_forms",
     "crispy_bootstrap4",
@@ -124,7 +125,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
