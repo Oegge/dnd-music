@@ -1,0 +1,15 @@
+.playlist-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two columns of equal width */
+    grid-gap: 20px; /* Space between rows and columns */
+    padding: 20px; /* Padding around the grid */
+    margin: auto; /* Centers the grid horizontally */
+    max-width: 1200px; /* Optional: limits the width of the grid */
+    overflow-y: auto; /* Ensures scrolling within the grid if necessary */
+}
+.card.playlist {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for better visibility */
+    border-radius: 10px; /* Rounds the corners */
+    padding: 20px; /* Padding inside the card */
+    overflow-y: auto; /* Allows scrolling inside the card if the content is too long */
+}
