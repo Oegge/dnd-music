@@ -38,7 +38,8 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #ffffff44;
+    background-color: #232323e7;
+    color: #cca37a;
 }
 
 #song-list, #playlist {
@@ -47,7 +48,7 @@
     padding: 10px;
     min-height: 300px; /* Ensures each has a minimum height */
     border-radius: 10px;
-    background-color: #ffffff44; /* Adds a background color for better visibility */
+    background-color: #76757569; /* Adds a background color for better visibility */
 }
 
 .song-item {
@@ -59,7 +60,7 @@
     border-radius: 5px;
 }
 .ex-over{
-color: rgb(152, 84, 84);
+color: #985454;
 }
 input::placeholder { /* Universal placeholder styling */
     color: #888; /* Sets the placeholder text to a light grey color */

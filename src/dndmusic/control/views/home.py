@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 
 from django.views.generic import ListView
+from dndmusic.base.models.playlist import Playlist
 from dndmusic.base.models.song import Song
 from django.shortcuts import render, redirect
 from dndmusic.control.forms.login import LoginForm
@@ -54,7 +55,8 @@ class MainPage(View, LoginRequiredMixin):
     def get(self, request):
         user = request.user
         recent_songs = user.uploaded_songs.all().order_by('-last_played')[:5]  # Get the last 5 played songs
-        context = {'recent_songs': recent_songs}
+        playlists = Playlist.objects.all()  # Get the last 5 played songs
+        context = {'recent_songs': recent_songs,"playlists":playlists}
 
         return render(request, self.template_name,context=context )
 

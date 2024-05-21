@@ -1,19 +1,23 @@
 {% extends 'control/main.html' %}
 {% load static %}
+{% load dict_filter %}
 
-
+{% block title %}Playlists{% endblock title %}
 
 {% block content %}
-<h1 class="DND">{% block title %}{{playlist}}{% endblock title %}</h1>
+{% for playlist in playlists %}
+<h1 class="DND">{{playlist}}</h1>
   <div class="card playlist" id="playlist">
-    
-    {% for song in songs.playlist.id %}
+    {% with playlist_songs=songs|get:playlist.id %}
+
+    {% for song in playlist_songs %}
     <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
         <p>{{ song }}</p>
         <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
     </div>
     {% endfor %}
-    
+    {% endwith %}
+
   </div>
   <audio id="audioPlayer" controls>
     <source id="audioSource" src="" type="audio/mpeg">
@@ -25,6 +29,7 @@
     </button>  
     <button class="DND-Button" id="saveOrderButton">Save Playlist</button>
   </div>
+  {% endfor %}
 
 
 {% endblock %}

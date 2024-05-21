@@ -7,7 +7,7 @@
   padding: 0;
 }
 body {
-  color: rgb(217, 200, 183);
+  color: #cca37a;
   font-family: 'Sawarabi Mincho', serif;
   background-color: black;
   /* Standard body background */
@@ -107,6 +107,10 @@ body {
   font-size: 16px;
 }
 
+a{
+  color: rgb(217, 200, 183);
+
+}
 a:hover {
   color: rgb(255, 204, 153);
 }

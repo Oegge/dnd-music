@@ -15,9 +15,6 @@ class Playlist(models.Model):
             return []
         songs = list(self.songs.filter(id__in=song_ids))
         song_dict = {song.id: song for song in songs}
-        print(song_dict)
-        print(song_ids)
-        print([song_dict[song_id] for song_id in song_ids])
         
         return [song_dict[song_id] for song_id in song_ids if song_id in song_dict]
     

@@ -41,8 +41,8 @@ drake.on('dragend', function(el) {
     }
 });
 
- function filterSongs() {
-    var input = document.getElementById('filter');
+function filterSongs() {
+    var input = document.getElementById('song-filter');
     var filter = input.value.toLowerCase();
     var nodes = document.getElementById('song-list').getElementsByTagName('div');
     for (i = 0; i < nodes.length; i++) {

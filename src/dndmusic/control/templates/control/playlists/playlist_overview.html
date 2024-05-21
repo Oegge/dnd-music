@@ -1,12 +1,15 @@
 {% extends 'control/main.html' %}
 {% load static %}
-{% block content %}
+
 {% block title %}Playlists{% endblock title %}
+
+{% block content %}
+
 <div id="playlists">
     {% for playlist in playlists %}
     <div class="playlist" data-playlist-id="{{ playlist.id }}">
         <h2 onclick="toggleSongs(this)" ondblclick="navigateToPlaylist({{ playlist.id }})">
-            <i class="fas fa-compact-disc"></i>
+           <a href="{% url 'control:playlist-detail' pk=playlist.id %}"><i class="fas fa-compact-disc"></i></a> 
             {{ playlist.name }}
         </h2>
         <ul class="songs" style="display:none;">
@@ -22,7 +25,13 @@
 
 
 {% block scripts %}
-<script>
+
+{% endblock %}
+{% block css_files %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/playlists.css' %}" />
+  <script src="{% static 'scripts/playlists.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script>
     function toggleSongs(header) {
         // Toggle the display of the adjacent 'songs' list
         var songList = header.nextElementSibling;
@@ -32,13 +41,7 @@
             songList.style.display = "none";
         }
     }
-</script>
-{% endblock %}
-{% block css_files %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/playlists.css' %}" />
-  <script src="{% static 'scripts/playlists.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-  <script>
+
     function navigateToPlaylist(playlistId) {
         window.location.href = `{% url 'control:playlist-detail' pk=0 %}`.replace('/0', '/' + playlistId);
     }

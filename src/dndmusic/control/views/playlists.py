@@ -29,6 +29,16 @@ class ShowPlaylist(View, LoginRequiredMixin):
         return render(
             request, "control/playlists/playlist.html", context=context
         )
+        
+class PlaylistDJ(View, LoginRequiredMixin):
+    def get(self, request):
+        user = request.user
+        playlists=Playlist.objects.all()
+        songs = {playlist.id :playlist.get_ordered_songs() for playlist in playlists}
+        context = {"songs": songs, "playlists":playlists,"user": user}
+        return render(
+            request, "control/playlists/DJ.html", context=context
+        )
 
 
 class EditPlaylist(View, LoginRequiredMixin):

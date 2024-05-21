@@ -12,6 +12,26 @@
         <button onclick="window.location.href='{% url 'control:songs.add' %}'">Add New Song</button>
         <button onclick="window.location.href='{% url 'control:playlists.new' %}'">Create New Playlist</button>
     </div>
+    <div class="card playlists">
+        <h2>Playlists</h2>
+        <div id="playlists">
+            {% for playlist in playlists %}
+            <div class="playlist" data-playlist-id="{{ playlist.id }}">
+                <h2 onclick="toggleSongs(this)" ondblclick="navigateToPlaylist({{ playlist.id }})">
+                    <a href="{% url 'control:playlist-detail' pk=playlist.id %}"><i class="fas fa-compact-disc" ></i></a>
+                    {{ playlist.name }}
+                </h2>
+                <ul class="songs" style="display:none;" ondblclick="navigateToPlaylist({{ playlist.id }})">
+                    {% for song in playlist.songs.all %}
+                    <li>{{ song.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
     <div class="card recent-songs">
         <h2>Recently Played Songs</h2>
         <ul>
@@ -25,10 +45,19 @@
             {% endfor %}
         </ul>
     </div>
+   
 </div>
 {% endblock content %}
 
 {% block css_files  %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/playlists.css' %}" />
+<script src="{% static 'scripts/playlists.js' %}"></script>
+<script src="{% static 'scripts/home.js' %}"></script>
 
+<script>
+    function navigateToPlaylist(playlistId) {
+        window.location.href = `{% url 'control:playlist-detail' pk=0 %}`.replace('/0', '/' + playlistId);
+    }
+</script>
 {% endblock  %}

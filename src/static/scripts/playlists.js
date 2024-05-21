@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var playlist = document.getElementById('playlist');
     var saveOrderButton = document.getElementById('saveOrderButton');
     saveOrderButton.addEventListener('click', saveOrder);
-
+    let repeat = false;
     var sortable = new Sortable(playlist, {
         animation: 150,
         onEnd: function (evt) {
@@ -36,9 +36,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    const button = document.querySelector('.repeat-btn');
+    button.addEventListener('click', toggleRepeat);
+    function toggleRepeat() {
+        let button = document.querySelector('.repeat-btn'); // Select the button by its class
+        repeat = !repeat; // Toggle the repeat variable
+        if (repeat) {
+            button.classList.add('active'); // Add 'active' class when repeat is true
+        } else {
+            button.classList.remove('active'); // Remove 'active' class when repeat is false
+        }
+    }
+    
 
     audioPlayer.addEventListener("ended", function () {
-        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        if (!repeat) {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+        }
         loadSong(currentSongIndex);
     });
 
@@ -62,7 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     function saveOrder() {
-        const order = Array.from(songs).map(song => song.getAttribute('id'));
+        var pathname = window.location.pathname;
+
+        // Split the pathname into segments
+        var segments = pathname.split('/');
+
+        // Get the last segment, handling any potential trailing slash
+        var lastSegment = segments.pop() || segments.pop();  // Handles trailing slash if present
+
+        console.log(lastSegment);
+        const order = Array.from(songs).map(song => parseInt(song.getAttribute('id'), 10));
         console.log(songs)
         fetch('/api/update_order/', {
             method: 'POST',
@@ -71,7 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 'X-CSRFToken': getCookie('csrftoken'),  // CSRF token for Django
             },
             body: new URLSearchParams({
-                'order[]': order
+
+                'order[]': order,
+                'playlist': lastSegment
             }).toString()
         })
             .then(response => response.json())
