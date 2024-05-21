@@ -20,10 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
             audioPlayer.play()
                 .catch(error => {
                     console.error("Error playing the file:", error);
-                    // Check for autoplay issues
                     if (error.name === 'NotAllowedError') {
                         console.warn('Autoplay was prevented.');
-                        // Consider showing a UI element to encourage user interaction
                     }
                 });
             highlightCurrentSong(song);
@@ -38,18 +36,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     audioPlayer.addEventListener("ended", function () {
-        // Find the next song to play when current song ends
         const currentSong = document.querySelector(".song.current");
+        if(repeat){
+            currentSong.click();
+            return;
+        }
         let nextSong = currentSong.nextElementSibling;
         if (!nextSong || !nextSong.classList.contains('song')) {
-            // If no next song in this playlist, go to the first song
             nextSong = currentSong.parentNode.querySelector('.song');
             console.log(nextSong);
         }
-        nextSong.click();  // Simulate click on next song
+        nextSong.click(); 
     });
 
-    audioPlayer.addEventListener('error', (e) => {
-        console.error("Error loading the audio:", e);
-    });
+   let repeat=false;
+    const button = document.querySelector('.repeat-btn');
+    button.addEventListener('click', toggleRepeat);
+    function toggleRepeat() {
+        let button = document.querySelector('.repeat-btn'); // Select the button by its class
+        repeat = !repeat; // Toggle the repeat variable
+        if (repeat) {
+            button.classList.add('active'); // Add 'active' class when repeat is true
+        } else {
+            button.classList.remove('active'); // Remove 'active' class when repeat is false
+        }
+    }
 });
