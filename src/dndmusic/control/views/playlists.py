@@ -25,6 +25,7 @@ class ShowPlaylist(View, LoginRequiredMixin):
         playlist=Playlist.objects.get(id=pk)
         songs = playlist.get_ordered_songs()
         print(playlist)
+        print(songs)
         context = {"songs": songs, "playlist":playlist,"user": user}
         return render(
             request, "control/playlists/playlist.html", context=context

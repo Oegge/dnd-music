@@ -1,27 +1,43 @@
 {% extends 'control/main.html' %}
 {% load static %}
 
-{% block title %}Songs{% endblock title %}
-
-
 {% block content %}
-  <div id="playlist">
+<h1 class="DND">{% block title %}All Titles{% endblock title %}</h1>
+<div class="container">
+  <div class="row" id="playlist">
     {% for song in songs %}
-    <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
-      <p>{{ song.name }}</p>
+    <div class="col-md-4">
+      <div class="card playlist">
+        <div class="song" style="margin: 5px;" data-audio="{{ song.audio.url }}" id="{{ song.id }}">
+          <p>{{ song }}</p>
+          <span id="song-tags-{{ song.id }}">
+            {% for tag in song.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </span>
+          <a href="#modal{{ song.id }}" data-toggle="modal"><i class="fas fa-tag"></i></a>
+          <a href=""><i class="fas fa-trash"></i></a>
+          <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
+        </div>
+      </div>
     </div>
+    {% include 'control/songs/tag_modal.html' with song=song all_tags=all_tags %}
     {% endfor %}
   </div>
-  <audio id="audioPlayer" controls>
-    <source id="audioSource" src="" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <button id="saveOrderButton">Save Playlist</button>
+</div>
 
+<audio id="audioPlayer" controls>
+  <source id="audioSource" src="" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<div>  
+  <button class="repeat-btn">
+    <i class="fas fa-redo"></i> 
+  </button>  
+  <button class="DND-Button" id="saveOrderButton">Save Playlist</button>
+</div>
 {% endblock %}
-{% block css_files %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
-  <script src="{% static 'scripts/playlists.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
+<script src="{% static 'scripts/song_overview.js' %}"></script>
 {% endblock %}

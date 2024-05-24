@@ -1,6 +1,5 @@
 import os
 from django.db import models
-from dndmusic.base.models.tagging import Tag
 from pydub import AudioSegment
 import datetime
 from django.contrib.auth.models import User

@@ -1,5 +1,5 @@
 from django.urls import path
-from dndmusic.control.views.api_controller import update_song_order
+from dndmusic.control.views.api_controller import update_song_order, update_tags
 from dndmusic.control.views import home
 from dndmusic.control.views import songs
 from dndmusic.control.views import playlists
@@ -33,8 +33,9 @@ urlpatterns = [
     path("tagging/tags/new", tagging.NewTag.as_view(), name="tagging.tags.new"),
    
     path("tagging/scales/new", tagging.NewScale.as_view(), name="tagging.scales.new"),
-    path("song/play/<int:song_id>", songs.PlaySong.as_view(), name="play.single.song"),
+    path("songs/play", songs.PlaySongs.as_view(), name="play.single.song"),
     path("api/update_order/", update_song_order, name="update_order"),
+    path("edit/tag/<int:song_id>", update_tags, name="update_order"),
     path("playlists/<int:pk>", playlists.ShowPlaylist.as_view(), name="playlist-detail"),
     path('add_bulk_songs/', songs.BulkAddSongsView.as_view(), name='add_bulk_songs'),
 

@@ -42,13 +42,12 @@
 .DND-Button:hover {
     background-color: rgba(226, 226, 226, 0.278); /* Optional: Slight darkening on hover, adjust opacity as needed */
 }
-
 audio {
-    width: 100%; /* Adjust width to fit the container */
+    width: calc(100% - 50px); /* Shorten the width by 50px to make space for the repeat button */
     height: 50px;
     position: fixed;
     bottom: 0;
-    left: 0; /* Align with the playlist width */
+    left: 0;
     background-color: #333;
     border: none;
     outline: none;
@@ -72,15 +71,21 @@ audio::-webkit-media-controls-time-remaining-display {
     color: #fff;
 }
 
-.repeat-btn.active{
-    border: #734201;
-    border-radius: 4px;
-    color: #3700ff;
+.repeat-btn {
+    background-color: #fff;
+    position: fixed;
+    right: 0; /* Position at the bottom right */
+    bottom: 0;
+    width: 50px; /* Define a fixed width */
+    height: 50px; /* Same height as the player */
+    border: none;
+    color: #767676;
+    cursor: pointer; /* Make it look clickable */
 }
 
-.repeat-btn {
-    background-color: transparent;
-    border: transparent;
-    color: #767676;
+.repeat-btn.active {
+    border: 2px solid #734201;
+    border-radius: 4px;
+    color: #3700ff;
 }
 

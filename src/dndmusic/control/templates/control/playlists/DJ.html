@@ -19,8 +19,9 @@
               <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
           </div>
           {% endfor %}
-          {% endwith %}      </div>
-  </div>
+          {% endwith %}    
+          </div>
+      </div>
   {% endfor %}
 </div>
 
@@ -30,7 +31,7 @@
   </audio>
   <div>  
     <button class="repeat-btn">
-      <i class="fas fa-redo"></i> 
+      <img src="{% static 'images/repeat-once.png' %}"/>
     </button>  
   </div>
 

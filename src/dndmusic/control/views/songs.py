@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from dndmusic.base.models.song import Song
 from django.shortcuts import render, redirect
 from dndmusic.base.models.tagging import Tag
+from dndmusic.control.forms.SongTagsForm import SongTagsForm
 from dndmusic.control.forms.login import LoginForm
 from dndmusic.control.forms.BulkUploadForm import BulkUploadForm
 
@@ -16,11 +17,12 @@ class SongOverview(View, LoginRequiredMixin):
         user = request.user
         songs=Song.objects.all()
         context={'songs':songs,
-                 'user':user
+                 'user':user,
         }
         return render(request,'control/songs/song_overview.html',context=context)
     
 
+    
 class AddSong(View, LoginRequiredMixin):
     def get(self, request):
         user = request.user
@@ -33,6 +35,15 @@ class PlaySong(View,LoginRequiredMixin):
         songs = Song.objects.all()
         context={'songs':songs} 
         return render(request,'control/songs/play.html',context=context)    
+    
+class PlaySongs(View,LoginRequiredMixin):
+    def get(self,request):
+        songs = Song.objects.all()
+        form = SongTagsForm()
+        all_tags = Tag.objects.all()
+        context={'songs':songs,'form':form,'all_tags':all_tags}
+        return render(request,'control/songs/play.html',context=context)    
+        
         
 class BulkAddSongsView(View, LoginRequiredMixin):
     template_name = 'control/songs/bulk_add_songs.html'

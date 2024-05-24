@@ -7,7 +7,7 @@
 <h1 class="DND">{% block title %}{{playlist}}{% endblock title %}</h1>
   <div class="card playlist" id="playlist">
     
-    {% for song in songs.playlist.id %}
+    {% for song in songs %}
     <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
         <p>{{ song }}</p>
         <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
