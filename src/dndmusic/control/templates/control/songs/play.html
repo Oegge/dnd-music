@@ -8,14 +8,13 @@
     {% for song in songs %}
     <div class="col-md-4">
       <div class="card playlist">
-        <div class="song" style="margin: 5px;" data-audio="{{ song.audio.url }}" id="{{ song.id }}">
-          <p>{{ song }}</p>
+        <div class="song" style="margin: 5px;" >
+          <p data-audio="{{ song.audio.url }}" id="{{ song.id }}">{{ song }}</p>
           <span id="song-tags-{{ song.id }}">
             {% for tag in song.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
           </span>
           <a href="#modal{{ song.id }}" data-toggle="modal"><i class="fas fa-tag"></i></a>
-          <a href=""><i class="fas fa-trash"></i></a>
           <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
         </div>
       </div>

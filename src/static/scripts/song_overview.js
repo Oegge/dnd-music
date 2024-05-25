@@ -1,34 +1,35 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    var saveOrderButton = document.getElementById('saveOrderButton');
-    saveOrderButton.addEventListener('click', saveOrder);
     let repeat = false;
    
     const audioPlayer = document.getElementById("audioPlayer");
     const audioSource = document.getElementById("audioSource");
-    let songs = document.querySelectorAll("#playlist .song");
-    let currentSongIndex = 0;
+   let currentSongIndex = 0;
     updateSongsOrder();
     function loadSong(index) {
         const song = songs[index];
 
         audioSource.src = song.getAttribute("data-audio");
-        console.log(audioSource.src)
         audioPlayer.load();
         audioPlayer.play();
         highlightCurrentSong(index);
     }
 
     function highlightCurrentSong(index) {
-        songs.forEach((song, idx) => {
+    songs.forEach((pElement, idx) => {
+        // Access the parent .song element using closest() method
+        const song = pElement.closest('.song');
+        if (song) {  // Ensure that the .song parent was found
             if (idx === index) {
-                song.classList.add("current");
+                song.classList.add("current");  // Add 'current' to the parent .song of the targeted p element
             } else {
-                song.classList.remove("current");
+                song.classList.remove("current");  // Remove 'current' from other .song parents
             }
-        });
-    }
+        }
+    });
+}
+
     const button = document.querySelector('.repeat-btn');
     button.addEventListener('click', toggleRepeat);
     function toggleRepeat() {
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateSongsOrder() {
-        songs = document.querySelectorAll("#playlist .song");
+        songs = document.querySelectorAll("#playlist .song p");
         songs.forEach((song, index) => {
             song.addEventListener("click", () => {
                 currentSongIndex = index;
@@ -68,39 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currentSongIndex++;
         }
     }
-    function saveOrder() {
-        var pathname = window.location.pathname;
 
-        // Split the pathname into segments
-        var segments = pathname.split('/');
-
-        // Get the last segment, handling any potential trailing slash
-        var lastSegment = segments.pop() || segments.pop();  // Handles trailing slash if present
-
-        console.log(lastSegment);
-        const order = Array.from(songs).map(song => parseInt(song.getAttribute('id'), 10));
-        console.log(songs)
-        fetch('/api/update_order/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCookie('csrftoken'),  // CSRF token for Django
-            },
-            body: new URLSearchParams({
-
-                'order[]': order,
-                'playlist': lastSegment
-            }).toString()
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    console.log('Order saved successfully');
-                } else {
-                    console.log('Failed to save order');
-                }
-            });
-    }
 });
 
 
