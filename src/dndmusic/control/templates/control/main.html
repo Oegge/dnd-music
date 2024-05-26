@@ -46,16 +46,10 @@
 
     <style>
       body {
-        background-image: url({% static "images/background.png" %});
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
+  background-image: url({% static "images/background.png" %});
+       
       }
-      .dragon {
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
+      
     </style>
 
     <!-- jQuery & jQuery UI -->
@@ -97,7 +91,7 @@
 
               {% endblock title %}</span>
           </div>
-          <div class="dragon-right" >
+          <div class="dragon-right">
             <img src="{% static 'images/dragon_clef_mini_norim.png' %}" >
             <a href="{% url 'control:login' %}" >
               {% if user.is_authenticated %}{{ user.username }} {% else %} Login{% endif %} 
@@ -105,7 +99,6 @@
           </div>
         </div>
       </div>
-      <div>{% block sideline_left %}{% endblock sideline_left %}</div>
       <div class="secondline"></div>
       <div> {% include 'control/navigation.html' %}</div>
     </div>
