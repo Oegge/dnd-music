@@ -4,5 +4,5 @@
 
 /* To ensure the first icon doesn't have unwanted margin, reset it */
 .actions-container a:first-child {
-    margin-left: 0;
+    margin-left: 12;
 }

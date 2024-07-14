@@ -1,17 +1,33 @@
+.playlist-container {
+    border: 3px solid rgba(255, 255, 255, 0.5); /* 50% alpha for the border */
+    background-color: rgba(128, 128, 128, 0.5); /* 50% alpha for a slight grey background */
+    padding: 10px; /* Optional: Add some padding to make the content look better */
+    border-radius: 15px;
+    display: flex;
+    min-width: 500px; /* Sets the minimum width */
+    
+    flex-direction: column; /* Ensure items are ordered vertically */
+    align-items: stretch; /* Ensure items stretch to full width */
+}
+
+
 .playlist h2 {
     background-color: antiquewhite;
-    min-width: 100px; /* Sets the minimum width */
+    min-width: 200px; /* Sets the minimum width */
     cursor: pointer;
     color: #06213e; /* Bootstrap primary blue for example */
-    border-radius: 10px; /* Adds rounded corners */
+    border-radius: 15px; /* Adds rounded corners */
     margin: 5px; 
     margin-right: 10px;
     padding-left: 5px;
     padding-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .playlist h2 i {
-    margin-right: 5px; /* Adds spacing between the icon and the text */
+    margin-right: 10px; /* Adds spacing between the icon and the text */
 }
 .playlist h2:hover {
     text-decoration: underline;
@@ -27,4 +43,7 @@
     padding-left: 5px;
     padding-right: 15px;
 
+}
+.playlist h2 .delete-icon {
+    margin-left: auto;
 }

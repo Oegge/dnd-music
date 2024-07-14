@@ -11,7 +11,7 @@ class Song(models.Model):
     last_played = models.DateTimeField(null=True, blank=True)
     uploader = models.ForeignKey(User, related_name='uploaded_songs', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag', related_name='songs')
-
+    objects = models.Manager()
     def save(self, *args, **kwargs):
         if self.name:
             base, ext = os.path.splitext(self.name)

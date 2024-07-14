@@ -1,6 +1,7 @@
-# dndmusic/control/rest/controller/api_controller.py
 
 import json
+
+from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -33,3 +34,11 @@ def update_tags(request, song_id):
     song.tags.set(tags)
     return Response(serializer.data, status=200)
 
+@api_view(["DELETE"])
+def delete_playlist(request, pk):
+    try:
+        playlist = Playlist.objects.get(pk=pk)
+        playlist.delete()
+        return JsonResponse({'message': 'Playlist deleted successfully.'}, status=204)
+    except Playlist.DoesNotExist:
+        return JsonResponse({'error': 'Playlist not found.'}, status=404)

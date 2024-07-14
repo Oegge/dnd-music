@@ -4,13 +4,15 @@
 {% block title %}Playlists{% endblock title %}
 
 {% block content %}
-
-<div id="playlists">
+<div id="playlists" class="playlist-container">
     {% for playlist in playlists %}
     <div class="playlist" data-playlist-id="{{ playlist.id }}">
-        <h2 onclick="toggleSongs(this)" ondblclick="navigateToPlaylist({{ playlist.id }})">
-           <a href="{% url 'control:playlist-detail' pk=playlist.id %}"><i class="fas fa-compact-disc"></i></a> 
+        <h2 onclick="toggleSongs(this)" ondblclick="navigateToPlaylist({{playlist.id}})">
+            <a href="{% url 'control:playlist-detail' pk=playlist.id %}"><i class="fas fa-compact-disc"></i></a>
             {{ playlist.name }}
+            <a href="{% url 'control:playlist-delete' pk=playlist.id %}" class="delete-icon">
+                <i class="fas fa-trash"></i>
+            </a>
         </h2>
         <ul class="songs" style="display:none;">
             {% for song in playlist.songs.all %}
@@ -19,8 +21,9 @@
         </ul>
     </div>
     {% endfor %}
-    
 </div>
+
+
 {% endblock %}
 
 
@@ -29,7 +32,7 @@
 {% endblock %}
 {% block css_files %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/playlists.css' %}" />
-  <script src="{% static 'scripts/playlists.js' %}"></script>
+  <script src="{% static 'scripts/playlist_overview.js' %}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
   <script>
     function toggleSongs(header) {

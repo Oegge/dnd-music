@@ -32,9 +32,9 @@ SECRET_KEY = "django-insecure-n3v4x^gklby$uq)f=pt98+78a0!x!ip^)9*5_to_uaq+v1-rl$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ['*']
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "dndmusic.base",
     "dndmusic",
+
     "rest_framework",
     "django_select2",
     "dndmusic.templatetags",

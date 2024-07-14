@@ -1,45 +1,28 @@
 
 .playlist {
+    margin-top: 20px;
     padding: 20px;
-    background-color: #76767644;
     display: flex;
-    border: #333;
     border-radius: 15px;
     flex-direction: column;
-    align-items: flex-start;
 }
 
-.playlist .song {
-    padding: 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.3s;
+.container{
+    margin-top: 80px;
+    background: rgba(255, 255, 255, 0);
 }
-
-.playlist .song:hover {
-    background-color: #676767;
-    transform: scale(1.05);
-}
-
-.playlist .song.current {
-    background-color: #676767;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-
-.DND-Button {
+.btn-save {
+    width: 100px;
     margin-top: 4px;
     color: #cca37a;
-    background-color: #76767644; /* Makes the background transparent */
-    border: 2px solid #000; /* Adds a black border, adjust color as needed */
-    border-radius: 15px; /* Adjust the radius to your preference for roundness */
+    background-color: rgba(78, 78, 78, 0.27); /* Makes the background transparent */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* 50% alpha for the border */
+    border-radius: 5px; /* Adjust the radius to your preference for roundness */
     padding: 10px 20px; /* Optional: Adjust padding for better spacing inside the button */
-    outline: none; /* Removes focus outline, add only if you handle focus state differently */
-    transition: all 0.3s ease; /* Smooth transition for hover effects, optional */
+    margin-bottom: 10px;
 }
 
-.DND-Button:hover {
+.btn-save:hover {
     background-color: rgba(226, 226, 226, 0.278); /* Optional: Slight darkening on hover, adjust opacity as needed */
 }
 audio {

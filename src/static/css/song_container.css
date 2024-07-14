@@ -1,0 +1,29 @@
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Ensure containers wrap to the next line if necessary */
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-container {
+    background: rgba(145, 145, 145, 0.25);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5); /* 50% alpha for the border */
+    flex: 1; /* Make the containers fill the row equally */
+    box-sizing: border-box;
+}
+
+.song-container:hover{
+    background: rgba(140, 140, 140, 0.5);
+}
+.song-container.current {
+    background: rgba(26, 0, 126, 0.75);
+}

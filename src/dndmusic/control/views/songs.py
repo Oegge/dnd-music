@@ -34,7 +34,7 @@ class PlaySong(View,LoginRequiredMixin):
     def get(self,request,song_id):
         songs = Song.objects.all()
         context={'songs':songs} 
-        return render(request,'control/songs/play.html',context=context)    
+        return render(request,'control/songs/all_songs.html',context=context)    
     
 class PlaySongs(View,LoginRequiredMixin):
     def get(self,request):
@@ -42,7 +42,7 @@ class PlaySongs(View,LoginRequiredMixin):
         form = SongTagsForm()
         all_tags = Tag.objects.all()
         context={'songs':songs,'form':form,'all_tags':all_tags}
-        return render(request,'control/songs/play.html',context=context)    
+        return render(request,'control/songs/all_songs.html',context=context)    
         
         
 class BulkAddSongsView(View, LoginRequiredMixin):

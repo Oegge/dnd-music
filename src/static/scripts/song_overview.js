@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function highlightCurrentSong(index) {
     songs.forEach((pElement, idx) => {
         // Access the parent .song element using closest() method
-        const song = pElement.closest('.song');
+        const song = pElement.closest('.song-container');
         if (song) {  // Ensure that the .song parent was found
             if (idx === index) {
                 song.classList.add("current");  // Add 'current' to the parent .song of the targeted p element

@@ -2,35 +2,35 @@
 {% load static %}
 
 
-
 {% block content %}
 <h1 class="DND">{% block title %}{{playlist}}{% endblock title %}</h1>
-  <div class="card playlist" id="playlist">
-    
+<div class="playlist" id="playlist">
+
     {% for song in songs %}
-    <div class="song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
-        <p>{{ song }}</p>
+    <div class="song-container song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
+        {{ song }}
         <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
     </div>
     {% endfor %}
-    
-  </div>
-  <audio id="audioPlayer" controls>
+    <button class="btn-save" id="saveOrderButton">Save</button>
+
+</div>
+<audio id="audioPlayer" controls>
     <source id="audioSource" src="" type="audio/mpeg">
     Your browser does not support the audio element.
-  </audio>
-  <div>  
+</audio>
+<div>
     <button class="repeat-btn">
-      <i class="fas fa-redo"></i> 
-    </button>  
-    <button class="DND-Button" id="saveOrderButton">Save Playlist</button>
-  </div>
+        <i class="fas fa-redo"></i>
+    </button>
+</div>
 
 
 {% endblock %}
 {% block css_files %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
-  <script src="{% static 'scripts/playlists.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/song_container.css' %}"/>
+<script src="{% static 'scripts/playlists.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 
 {% endblock %}

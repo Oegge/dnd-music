@@ -3,11 +3,11 @@
 
 {% block content %}
 <h1 class="DND">{% block title %}All Titles{% endblock title %}</h1>
-<div class="container">
+<div >
   <div class="row" id="playlist">
     {% for song in songs %}
     <div class="col-md-4">
-      <div class="card playlist">
+      <div class="song-container">
         <div class="song" style="margin: 5px;" >
           <p data-audio="{{ song.audio.url }}" id="{{ song.id }}">{{ song }}</p>
           <span id="song-tags-{{ song.id }}">
@@ -32,11 +32,12 @@
   <button class="repeat-btn">
     <i class="fas fa-redo"></i> 
   </button>  
-  <button class="DND-Button" id="saveOrderButton">Save Playlist</button>
+  <button class="btn-save" id="saveOrderButton">Save Playlist</button>
 </div>
 {% endblock %}
 
 {% block css_files %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/song_container.css' %}" />
 <script src="{% static 'scripts/song_overview.js' %}"></script>
 {% endblock %}

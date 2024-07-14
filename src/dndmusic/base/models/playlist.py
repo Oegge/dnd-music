@@ -8,6 +8,7 @@ class Playlist(models.Model):
     name = models.CharField(max_length=100)
     songs = models.ManyToManyField(Song, related_name="playlists")
     song_ids_ordered = models.CharField(max_length=1024, default="")
+    objects = models.Manager()
     
     def get_ordered_songs(self):
         song_ids = json.loads(self.song_ids_ordered)
