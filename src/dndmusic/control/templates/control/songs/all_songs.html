@@ -3,41 +3,48 @@
 
 {% block content %}
 <h1 class="DND">{% block title %}All Titles{% endblock title %}</h1>
-<div >
-  <div class="row" id="playlist">
-    {% for song in songs %}
-    <div class="col-md-4">
-      <div class="song-container">
-        <div class="song" style="margin: 5px;" >
-          <p data-audio="{{ song.audio.url }}" id="{{ song.id }}">{{ song }}</p>
-          <span id="song-tags-{{ song.id }}">
-            {% for tag in song.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-          </span>
-          <a href="#modal{{ song.id }}" data-toggle="modal"><i class="fas fa-tag"></i></a>
-          <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
+<div>
+    <div class="row" id="playlist">
+        {% for song in songs %}
+        <div class="col-md-4">
+            <div class="song-container">
+                <div class="song" style="margin: 5px;">
+                    <p data-audio="{{ song.audio.url }}" id="{{ song.id }}">{{ song }}</p>
+                    <span id="song-tags-{{ song.id }}">
+                        {% for tag in song.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </span>
+                    <a href="#modal{{ song.id }}" data-toggle="modal"><i class="fas fa-tag"></i></a>
+                    <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
+                </div>
+            </div>
         </div>
-      </div>
+        {% endfor %}
     </div>
-    {% include 'control/songs/tag_modal.html' with song=song all_tags=all_tags %}
-    {% endfor %}
-  </div>
+</div>
+<div style="margin-top:50px ">
+
 </div>
 
 <audio id="audioPlayer" controls>
-  <source id="audioSource" src="" type="audio/mpeg">
-  Your browser does not support the audio element.
+    <source id="audioSource" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
 </audio>
-<div>  
-  <button class="repeat-btn">
-    <i class="fas fa-redo"></i> 
-  </button>  
-  <button class="btn-save" id="saveOrderButton">Save Playlist</button>
+<div>
+    <button class="repeat-btn">
+        <i class="fas fa-redo"></i>
+    </button>
 </div>
 {% endblock %}
+{% block modal %}
 
+{% for song in songs %}
+{% include 'control/songs/tag_modal.html' with song=song all_tags=all_tags %}
+{% endfor %}
+
+{% endblock modal %}
 {% block css_files %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/song_container.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/songplayer.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/song_container.css' %}"/>
 <script src="{% static 'scripts/song_overview.js' %}"></script>
 {% endblock %}

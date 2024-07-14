@@ -2,15 +2,16 @@
 {% load static %}
 {% block title %}Add Playlist{% endblock title %}
 {% block content %}
-<div class="container">
-    <div class="input-container">
-        Name
-        <input type="text" id="name" placeholder="Enter name...">
-    </div>
-    <div class="row">
+<div class="row">
+    <div class="col-6">
+        <div class="input-container">
+            Name
+            <input type="text" id="name" placeholder="Enter name...">
+        </div>
         <div class="song-list-container">
             Songs
-            <input class="filter-songs" type="text" id="song-filter" oninput="filterSongs()" placeholder="Filter songs...">
+            <input class="filter-songs" type="text" id="song-filter" oninput="filterSongs()"
+                   placeholder="Filter songs...">
             <div id="song-list">
                 {% for song in songs %}
                 <div class="song-item" data-id="{{ song.id }}" data-tags="{{ song.tags.all|join:', ' }}">
@@ -21,17 +22,18 @@
                 {% endfor %}
             </div>
         </div>
-        <form id="playlist-form" action="{% url 'control:playlists.new' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="name" id="hidden-name">
-
-            <div class="playlist-container">
-                Playlist
-                <div id="playlist" class="drag-container"></div>
-            </div>
-            <button type="submit" class="submit-btn">Submit Playlist</button>
-        </form>
     </div>
+
+    <form class="playlist-form col-6" id="playlist-form" action="{% url 'control:playlists.new' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="name" id="hidden-name">
+        <div class="playlist-container">
+            Playlist
+            <button type="submit" class="btn-save">Submit</button>
+            <div id="playlist" class="drag-container"></div>
+        </div>
+    </form>
+
 </div>
 
 {% endblock content %}
@@ -39,7 +41,7 @@
 <script src="https://unpkg.com/dragula/dist/dragula.min.js"></script>
 <script src="{% static 'scripts/addplaylist.js' %}"></script>
 <script>
-    document.getElementById('playlist-form').addEventListener('submit', function() {
+    document.getElementById('playlist-form').addEventListener('submit', function () {
         var nameInput = document.getElementById('name');
         var hiddenNameInput = document.getElementById('hidden-name');
         hiddenNameInput.value = nameInput.value;
@@ -47,6 +49,6 @@
 </script>
 {% endblock %}
 {% block css_files %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/add-playlist.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/dragular.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/add-playlist.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/dragular.css' %}"/>
 {% endblock css_files %}

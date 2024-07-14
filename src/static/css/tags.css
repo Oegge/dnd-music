@@ -1,0 +1,17 @@
+/* Ensure the modal has a higher z-index */
+/*.modal {*/
+/*    z-index: 1050; !* Bootstrap default is 1050, increase if necessary *!*/
+/*}*/
+
+/*.modal-backdrop {*/
+/*    z-index: 1040; !* Bootstrap default is 1040, increase if necessary *!*/
+/*}*/
+
+/* Ensure select2 dropdown appears correctly within modal */
+/*.select2-container--open {*/
+/*    z-index: 9999 !important;*/
+/*}*/
+
+.tag-dialogue.modal{
+    z-index: 9999;
+}
