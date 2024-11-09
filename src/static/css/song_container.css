@@ -22,6 +22,11 @@
 }
 
 .song-container:hover{
+    cursor: pointer;
+    background: rgba(140, 140, 140, 0.5);
+}
+.song-container.sortable-chosen{
+    cursor: grabbing;
     background: rgba(140, 140, 140, 0.5);
 }
 .song-container.current {

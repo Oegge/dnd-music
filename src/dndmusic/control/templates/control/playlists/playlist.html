@@ -4,16 +4,16 @@
 
 {% block content %}
 <h1 class="DND">{% block title %}{{playlist}}{% endblock title %}</h1>
-<div class="playlist" id="playlist">
+<div class="playlist" id="playlist" style="position: relative; margin-bottom: 50px">
 
+    <button class="btn-save save-playlist"  id="saveOrderButton">Save</button>
     {% for song in songs %}
     <div class="song-container song" data-audio="{{ song.audio.url }}" id="{{song.id}}">
         {{ song }}
+        <span> {{ song.duration }} </span>
         <audio src="{{ song.audio.url }}" id="audio-{{ song.id }}" preload="none"></audio>
     </div>
     {% endfor %}
-    <button class="btn-save" id="saveOrderButton">Save</button>
-
 </div>
 <audio id="audioPlayer" controls>
     <source id="audioSource" src="" type="audio/mpeg">

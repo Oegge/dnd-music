@@ -1,5 +1,5 @@
 from django.urls import path
-from dndmusic.control.views.api_controller import update_song_order, update_tags
+from dndmusic.control.views.api_controller import update_song_order, update_tags, update_durations, get_song_tags
 from dndmusic.control.views import api_controller
 from dndmusic.control.views import home
 from dndmusic.control.views import songs
@@ -34,6 +34,8 @@ urlpatterns = [
 
     path('delete/playlist/<int:pk>/', api_controller.delete_playlist, name='playlist-delete'),
     path("api/update_order/", update_song_order, name="update_order"),
+    path("api/update_durations", update_durations, name="update_durations"),
+    path("api/get_song_tags", get_song_tags, name="get_song_tags"),
 ]
 
 

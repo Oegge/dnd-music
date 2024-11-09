@@ -15,54 +15,59 @@ from dndmusic.control.forms.BulkUploadForm import BulkUploadForm
 class SongOverview(View, LoginRequiredMixin):
     def get(self, request):
         user = request.user
-        songs=Song.objects.all()
-        context={'songs':songs,
-                 'user':user,
-        }
-        return render(request,'control/songs/song_overview.html',context=context)
-    
+        songs = Song.objects.all()
+        context = {'songs': songs,
+                   'user': user,
+                   }
+        return render(request, 'control/songs/song_overview.html', context=context)
 
-    
+
 class AddSong(View, LoginRequiredMixin):
     def get(self, request):
         user = request.user
-        context={'user':user
-        }
-        return render(request,'control/songs/add_song.html',context=context)    
-    
-class PlaySong(View,LoginRequiredMixin):
-    def get(self,request,song_id):
+        context = {'user': user
+                   }
+        return render(request, 'control/songs/add_song.html', context=context)
+
+
+class PlaySong(View, LoginRequiredMixin):
+    def get(self, request, song_id):
         songs = Song.objects.all()
-        context={'songs':songs} 
-        return render(request,'control/songs/all_songs.html',context=context)    
-    
-class PlaySongs(View,LoginRequiredMixin):
-    def get(self,request):
+        context = {'songs': songs}
+        return render(request, 'control/songs/all_songs.html', context=context)
+
+
+class PlaySongs(View, LoginRequiredMixin):
+    def get(self, request):
         songs = Song.objects.all()
         form = SongTagsForm()
         all_tags = Tag.objects.all()
-        context={'songs':songs,'form':form,'all_tags':all_tags}
-        return render(request,'control/songs/all_songs.html',context=context)    
-        
-        
+        context = {'songs': songs, 'form': form, 'all_tags': all_tags}
+        return render(request, 'control/songs/all_songs.html', context=context)
+
+
 class BulkAddSongsView(View, LoginRequiredMixin):
     template_name = 'control/songs/bulk_add_songs.html'
 
     def get(self, request):
         form = BulkUploadForm()
         tags = Tag.objects.all()
-        return render(request, self.template_name, {'form': form,'tags':tags})
+        return render(request, self.template_name, {'form': form, 'tags': tags})
 
     def post(self, request):
         form = BulkUploadForm(request.POST, request.FILES)
         print(request.POST)
-        tags= list(Tag.objects.all())
+        tags = list(Tag.objects.all())
         if form.is_valid():
             files = request.FILES.getlist('audio_files')
-            for i, f  in enumerate(files):
-                song = Song(audio=f, name=f.name, uploader=request.user)
+            for i, f in enumerate(files):
+                try:
+                    name = request.POST[f"song_name_{i}"]
+                except:
+                    name = f.name
+                song = Song(audio=f, name=name, uploader=request.user)
                 song.save()
-                
+
                 try:
                     tags = request.POST[f'tags_{i}']
                     song.tags.set(Tag.objects.filter(id__in=tags))
@@ -70,6 +75,6 @@ class BulkAddSongsView(View, LoginRequiredMixin):
                 except:
                     song.tags.set(Tag.objects.filter(id=1))
                     song.save()
-                
+
             return redirect(reverse('control:songs.overview'))  # Redirect to a success page or similar
         return render(request, self.template_name, {'form': form})

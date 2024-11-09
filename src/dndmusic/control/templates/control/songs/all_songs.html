@@ -10,7 +10,7 @@
             <div class="song-container">
                 <div class="song" style="margin: 5px;">
                     <p data-audio="{{ song.audio.url }}" id="{{ song.id }}">{{ song }}</p>
-                    <span id="song-tags-{{ song.id }}">
+                    <span id="song-tags-{{ song.id }}" style="text-transform: lowercase; font-weight: lighter">
                         {% for tag in song.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </span>

@@ -1,6 +1,5 @@
 from django.shortcuts import redirect
 from django.conf import settings
-from urllib.parse import urlparse
 
 class LoginRequiredMiddleware:
     def __init__(self, get_response):
